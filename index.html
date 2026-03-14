@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="GOLD-Logo.png" href="GOLD-Logo.png">
+
+    <meta charset="UTF-8">
+    <title>Team QuadX 2025-2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+    <div class="logo">
+    <img src="GOLD-Logo.png" alt="QuadX Logo" class="nav-icon">
+    <span>QuadX 6299</span>
+    </div>
+    <div class="nav-links">
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('first')">What is FIRST?</button> <!-- NEW -->
+        <button onclick="showPage('robots')">Robots</button>
+        <button onclick="showPage('outreach')">Outreach</button>
+        <button onclick="showPage('team')">Team</button>
+        <button onclick="showPage('docs')">Documents</button>
+    </div>
+</nav>
+
+
+
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+    <div class="hero-container">
+        <!-- Background Large Text -->
+        <h1 class="hero-bg-text">TEAM QUADX 6299</h1>
+        
+        <!-- Hovering Robot Image -->
+        <div class="robot-wrapper">
+            <img src="robot-transparent.png" alt="Our Robot" class="hero-robot">
+        </div>
+
+        <!-- Home Buttons -->
+        <div class="home-button-group">
+    <button class="square-btn btn-season" onclick="showPage('robots')">
+        <span>ROBOTS</span>
+    </button>
+    <button class="square-btn btn-members" onclick="showPage('team')">
+        <span>OUR TEAM</span>
+    </button>
+    <button class="square-btn btn-docs" onclick="showPage('outreach')">
+        <span>OUTREACHES</span>
+    </button>
+</div>
+    </div>
+</div>
+
+
+
+    <!-- Season Page -->
+    <div id="season" class="page">
+        <h2>Season Summary</h2>
+        <div class="content">
+            <h3>Awards</h3>
+            <ul><li>Engineering Excellence</li></ul>
+            <p>Our season focused on precision and speed...</p>
+        </div>
+    </div>
+
+    <!-- Documents Page -->
+    <div id="docs" class="page">
+        <h2>Official Documents</h2>
+        <div class="grid">
+            <a href="sponsor.pdf" class="btn" target="_blank">Sponsorship PDF</a>
+            <a href="volunteer.pdf" class="btn" target="_blank">Volunteer Guide</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!-- New Team Members Page -->
+<div id="team" class="page">
+  <h1 class="section-title">Meet the Team</h1>
+  <div class="member-grid">
+    <!-- Repeat this 'member-card' 12 times for your 4x3 grid -->
+    <div class="member-card">
+      <img src="./Headshots/Aarya.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Tony Ortega</h3>
+        <p>Co-PM/Hardware Lead</p>
+      </div>
+    </div>
+    
+    <div class="member-card">
+      <img src="Headshots/Amal.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Amal Madapaty</h3>
+        <p>Co-PM/Software Lead</p>
+      </div>
+    </div>
+    <!-- ... add 10 more cards here ... -->
+     <div class="member-card">
+      <img src="Headshots/Aarya.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Aarya Bhise</h3>
+        <p>APM/Marketing Lead</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Aiden.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Aiden Giroux</h3>
+        <p>Software Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Alex.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Alex Ritter</h3>
+        <p>Software Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Sarthak.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Sarthak Kamble</h3>
+        <p>Software Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Baran.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Baran Shafaei</h3>
+        <p>Marketing Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Andrea.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Andrea Joseph</h3>
+        <p>Marketing Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Eeshu.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Eeshu Pachigolla</h3>
+        <p>Hardware Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Seyeon.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Seyeon Kwon</h3>
+        <p>Hardware Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Akash.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Akash Katta</h3>
+        <p>Hardware Member</p>
+      </div>
+    </div>
+    <div class="member-card">
+      <img src="Headshots/Saachi.jpg" alt="Member Name">
+      <div class="member-info">
+        <h3>Saachi Arya</h3>
+        <p>Hardware Member</p>
+      </div>
+    </div>
+  </div>
+
+<div class="history-container">
+  <h1 class="page-title">Team History</h1>
+
+  <!-- Repeat this item 13 times -->
+   <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2025-2026</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        This season was full of ambition and progress. With 6 rookies on the team, we primarily focused on cirriculums and our own QuadX Leadership Camp to promote learning. We built 2 fully funcional robot capable of scoring from the far side with a consistent auto. In terms of outreach, we attended 7 company tours/visits including places like Tesla and Amazon. We hosted many STEM nights and Impulse, a FIRST related 2 day summer camp. We created our own team Viperia 32196 and fundraises $5,500 this season, with $1,300 going in our efforts to create 2 teams in Rwanda in partnership with Stryke 6210 to buy 2 starter kits for the students in Rwanda.
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC SWAT League Championships:<br>
+        - Inspire 3'rd
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2024-2025</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        Our 2024-2025 season had us taking on four different rookies. This year, we focused on having our new rookies brought up to speed, due to some of our notable veterans (namely our marketing lead) leaving at the end of the season. While our robot game was not on par with the previous year's robots, our outreach was great, with tours of Samsung and Dell facilities. Within this, there was also a large amount of community outreach (called Inertia) and professional virtual meetings. These learning experiences for the veterans and rookies was invaluable for improving next season's results.
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Central WALL-E Championship:<br>
+        - Connect 2'nd
+      </p>
+    </div>
+  </details>
+  <!-- End of Repeat -->
+   <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2023-2024</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        For our 2023-2024 season, we only had two rookies on our team, with the remainder being veterans. Despite this, we unfortunately were not able to advance past regionals. Even though our progression through the season was rough, we still took the time to outreach to our community by hosting events such as our coding basics camp CodeX, as well as learn several different techniques from industry professionals.
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Central WALL-E Championship:<br>
+        - Inspire 3'rd<br>
+        FTC Central Area Championship<br>
+        - Design 3'rd
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2022-2023</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        The beginning of the season was rough, due to little consideration for software in our design process, which caused problems early on. Thankfully, our team had much experience in judging, which helped us make it to worlds, as well as being a finalist for the design award in our division. Being at worlds was an incredible experience, with lots of excitement and fun to be had by the entire team. We also did a lot of outreach in multiple areas, even hosting a STEM event known as Momentum.
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Texas Central GEMS League Championsiphs:<br>
+        - Inspire 3'rd<br>
+        FTC Texas Central Regional Championship:<br>
+        - Connect 2'nd<br>
+        FTC Texas State Championship:<br>
+        - Inspire 2'nd<br>
+        FTC World Championship - Franklin Division:<br>
+        - Design 3'rd
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2021-2022</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        With an almost entirely rookie team and the pandemic's aftermath, the 2021 season was difficult but we also made big changes for the team as a whole. Meeting virtually was utilized heavily after the pandemic. Our end of year Momentum Career Showcase event was even held virtually, making STEM expertise accessible to more people. We continued to build our relationships with these industry professionals which influenced our future outreach opportunities. We also brought back some of our team traditions to boost team morale and made big strides to increase commitment to robotics. Despite the challenges we faced, we were able to influence and help many both in and outside of the STEM community while redefining what it means for us to be a successful team.
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Texas Central Austin Metro League Championship:<br>
+        - Design 1'st<br>
+        FTC Texas Central Championship:<br>
+        - Connect 1'st
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2020-2021</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        With an almost entirely rookie team and an emerging pandemic, the 2020 season was extremely difficult. Meeting times and spaces were restricted which made training our new team more challenging. Yet, we persevered and managed to reach many with FIRST values. The Argentinian camp we hosted was entirely in Spanish and available on our Youtube channel, making STEM resources and coding classes more accessible to those who do not speak English. We continued our relationship with South Africa and further helped the Greater Tzaneen Community FTC teams. We also continued our advocacy for STEM locally, speaking with legislature in hopes to improve STEM funding. Despite the many challenges of the pandemic, we were able to influence and help many. 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC League Championship:<br>
+        - Inspire 1'st<br>
+        FTC Texas State Cup:<br>
+        - Motivate 1'st<br>
+        FTC Alamo Regional Championship:<br>
+        - Motivate 1'st
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2019-2020</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        A team of all veteran members, QuadX had a strong base for the 2019 - 2020 season. Wanting to push the boundaries of what a small group of individuals could achieve, we took on our biggest endeavor yet and travelled to Tzaneen, South Africa to set up 2 FTC teams. Coming so close to our goal of winning Inspire at Worlds last year we didn't want to leave anything on the table. Unfortunately, after an already successful season winning the Inspire awards at our League Championship and Regional Championship our season was cut short due to COVID-19. 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC League Championship:<br>
+        - Division Finalist<br>
+        - Inspire 1'st<br>
+        - Connect 2'nd<br>
+        - Innovate 2'nd<br>
+        - Motivate 2'nd<br>
+        - Control 2'nd<br>
+        FTC Alamo Regional Championship:<br>
+        - Inspire 1'st<br>
+        - Think 2'nd<br>
+        - Connect 3'rd<br>
+        - Motivate 3'rd<br>
+        - Control 2'nd<br>
+        FTC World Championship:<br>
+        - Cancelled due to COVID-19
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2018-2019</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        With only one team member graduating from the year prior, QuadX had a strong base for the 2018 - 2019 season. We used our relationships built from the year before to design a competitive robot and even stronger team bond, culminating at the World Championships in Houston. Returning to the stage after a year absence, we were assured we had learned from our experiences bringing home the Inspire Finalist Award. 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC League Championship:<br>
+        - Winning Alliance First Pick<br>
+        - Inspire 2'nd<br>
+        - Motivate 1'st<br>
+        - Innovate 3'rd<br>
+        FTC Alamo Regional Championship:<br>
+        - Winning Alliance First Pick<br>
+        - Inspire 3'rd<br>
+        - Design 1'st<br>
+        - Think 3'rd<br>
+        - Connect 3'rd<br>
+        - Motivate 3'rd<br>
+        FTC World Championship:<br>
+        - Inspire Finalist Award
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2017-2018</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        Starting the season with more rookies than veterans, we had a lot of learning to do jumping into our season. Though there were many bumps in the road, we always used our experience to better ourselves for the next time. Although our season appeared to be over after the Alamo Regional Championships, we continued in off-season AML and were Winning Alliance First Pick at the AML "World Championships" 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC AML Offseason Event #5:<br>
+        - Winning Alliance First Pick<br>
+        FTC League Championship:<br>
+        - Finalist Alliance First Pick<br>
+        - Connect 3'rd<br>
+        FTC Alamo Wildcard Qualifier:<br>
+        - Inspire 2'nd<br>
+        - Control 1'st<br>
+        - Connect 3'rd<br>
+        - Finalist Alliance Second Pick<br>
+        FTC Alamo Regional Championship:<br>
+        - Finalist Alliance First Pick
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2016-2017</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        After a successful past few years we were ready to improve even more, bringing new members with some fresh perspective on to the team. Using what've learned from previous years, as well as incorporating new, innovative ideas, we came together to create our masterpiece "Apollo." We were able to return to the World Championships in Houston, Texas and win the Design Award for the third year in a row. 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC League Championship:<br>
+        - Inspire 1'st<br>
+        - Winning Alliance Captain<br>
+        FTC Alamo Regional Championship:<br>
+        - Inspire 1'st<br>
+        - Event Finalist Alliance First Pick<br>
+        FTC South Super Regionals:<br>
+        - PTC Design Award<br>
+        FTC World Championship:<br>
+        - PTC Design Award
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2015-2016</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        After having the exact same team for the past two years, our team structure changed drastically with the graduation of many of our old members to include 6 rookies. We didn't let these changes stop us from making it back to the World Championships and winning the Design Award for the second year in a row. 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Memorial Qualifier 12/6/15:<br>
+        - Inspire 1'st<br>
+        - Winning Alliance First Pick<br>
+        FTC Vandegrift Qualifer:<br>
+        - Winning Alliance Captain<br>
+        - PTC Design Award<br>
+        FTC Alamo Region Championship:<br>
+        - Inspire 3'rd<br>
+        - PTC Design Award<br>
+        - Control 2'nd<br>
+        FTC South Super Regionals:<br>
+        - 5'th Place in Qualification Matches<br>
+        FTC World Championship:<br>
+        - PTC Design Award<br>
+        - Division Finalist Alliance First Pick
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2014-2015</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        For our second year together, we knew exactly what we would need to do in order to be as successful as our rookie year. Now a group of friends who work exceptionally well together, we built another fast and maneuverable but simple robot, this time named “X.” We made it back to the World Championship, and became the first team from Texas to receive an award- the Design Award! 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Viperbots Open 11/15/14:<br>
+        - "Ball Leader" Award<br>
+        - High Score during Qualifications<br>
+        FTC Memorial Qualifier 12/6/14:<br>
+        - 1'st Place overall in Qualification Rounds<br>
+        - Innovate Finalist<br>
+        - Think Finalist<br>
+        - Design Finalist<br>
+        - Connect Finalist<br>
+        - Inspire 2'nd<br>
+        - Winning Alliance Captain<br>
+        FTC Harlandale Qualifier 1/31/15:<br>
+        - 1'st Place overall in Qualification Rounds<br>
+        - PTC Design Finalist<br>
+        - Connect Finalist<br>
+        - Think 1'st<br>
+        - Inspire 2'nd<br>
+        - Winning Alliance Captain<br>
+        FTC Alamo Region Championship:<br>
+        - Winning Alliance Captain<br>
+        - Inspire 2'nd<br>
+        FTC South Super Regionals:<br>
+        - Event Finalist Alliance First Pick<br>
+        FTC World Championship:<br>
+        - PTC Design Award<br>
+        - Finalist Alliance First Pick
+      </p>
+    </div>
+  </details>
+  <details class="history-item">
+    <summary class="year-header">
+      <span class="year-text">2013-2014</span>
+    </summary>
+    <div class="content">
+      <p class="season-desc">
+        While the team QuadX had been in existence for a year already, it was essentially our rookie year, since everyone was new to the team- we had 5 rookies, and nobody had ever been a member of the Hardware team. Through hard work, creativity, and sheer will, however, we made it to the World Championship! We had never expected to have one of the best-performing robots in the world at the beginning the year, and making it to the finals at Worlds was a fantastic conclusion to our first year together. 
+      </p>
+      <h3 class="awards-title">Awards Won</h3>
+      <p class="awards-list">
+        FTC Vandegrift Qualifier 12/7/13:<br>
+        - Inspire 2'nd<br>
+        - Finalist Alliance First Pick<br>
+        - World Record in the Qualification Rounds<br>
+        FTC Conally Double Qualifier 1/24/14:<br>
+        - Winning Alliance Captain<br>
+        - 1'st Place overall in Qualification Rounds<br>
+        - Innovate Finalist<br>
+        - "Best Alliance Partner Evah" Brick given by 7161 Hydra<br>
+        FTC Alamo Region Championship:<br>
+        - Innovate 1'st<br>
+        - Think Finalist<br>
+        FTC South Super Regionals:<br>
+        - Finalist Alliance Captain<br>
+        - Inspire 2'nd<br>
+        - Innovate 1'st<br>
+        FTC World Championship:<br>
+        - Finalist Alliance First Pick
+      </p>
+    </div>
+  </details>
+  
+
+</div>
+
+</div>
+
+<div id="outreach" class="page">
+    <h2 class="section-title">Our Outreach History</h2>
+    <div class="outreach-grid">
+        <!-- Button for 2025-2026 -->
+        <button class="outreach-tile" onclick="showPage('outreach-25-26')" style="background-image: url('/OUTREACH-HEADERS/25-26:OUTREACH.png');">
+            <div class="tile-overlay">
+                <span>2025-2026 Outreach</span>
+            </div>
+        </button>
+
+        <!-- Button for 2024-2025 -->
+        <button class="outreach-tile" onclick="showPage('outreach-24-25')" style="background-image: url('/OUTREACH-HEADERS/24-25:OUTREACH.png');">
+            <div class="tile-overlay">
+                <span>2024-2025 Outreach</span>
+            </div>
+        </button>
+
+        <!-- Repeat this block 7 more times to complete the 3x3 grid (9 total) -->
+        <!-- You can use a placeholder image if you don't have photos for all years yet -->
+         <button class="outreach-tile" onclick="showPage('outreach-23-24')" style="background-image: url('/OUTREACH-HEADERS/23-24:OUTREACH.jpg');">
+            <div class="tile-overlay">
+                <span>2023-2024 Outreach</span>
+            </div>
+        </button>
+        <button class="outreach-tile" onclick="showPage('outreach-22-23')" style="background-image: url('/OUTREACH-HEADERS/22-23:OUTREACH.png');">
+            <div class="tile-overlay">
+                <span>2022-2023 Outreach</span>
+            </div>
+        </button>
+        <button class="outreach-tile" onclick="showPage('outreach-21-22')" style="background-image: url('/OUTREACH-HEADERS/21-22:OUTREACH.png');">
+            <div class="tile-overlay">
+                <span>2021-2022 Outreach</span>
+            </div>
+        </button>
+        <button class="outreach-tile" onclick="showPage('outreach-20-21')" style="background-image: url('/OUTREACH-HEADERS/20-21:OUTREACH.png');">
+            <div class="tile-overlay">
+                <span>2020-2021 Outreach</span>
+            </div>
+        </button>
+        <button class="outreach-tile" onclick="showPage('outreach-19-20')" style="background-image: url('/OUTREACH-HEADERS/19-20:OUTREACH.jpg');">
+            <div class="tile-overlay">
+                <span>2019-2020 Outreach</span>
+            </div>
+        </button>
+        <button class="outreach-tile" onclick="showPage('outreach-18-19')" style="background-image: url('');">
+            <div class="tile-overlay">
+                <span>2018-2019 Outreach</span>
+            </div>
+        </button>
+        <button class="outreach-tile" onclick="showPage('outreach-17-18')" style="background-image: url('outreach25.jpg');">
+            <div class="tile-overlay">
+                <span>2017-2018 Outreach</span>
+            </div>
+        </button>
+    </div>
+</div>
+
+<div id="outreach-25-26" class="page">
+    <h2>2025-2026 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-24-25" class="page">
+    <h2>2024-2025 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-23-24" class="page">
+    <h2>2023-2024 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-22-23" class="page">
+    <h2>2022-2023 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-21-22" class="page">
+    <h2>2021-2022 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-20-21" class="page">
+    <h2>2020-2021 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-19-20" class="page">
+    <h2>2019-2020 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-18-19" class="page">
+    <h2>2018-2019 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="outreach-17-18" class="page">
+    <h2>2017-2018 Outreach Details</h2>
+    <button onclick="showPage('outreach')">← Back to Outreach</button>
+</div>
+
+<div id="robots" class="page">
+    <h2 class="section-title">OUR ROBOTS</h2>
+    <div class="robot-showcase">
+        <!-- Repeat this robot-tile 9 times -->
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2025-2026: ???</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2024-2025: ATLAS</h3>
+                <p>Titan was our most robust build yet, focused on defensive maneuvers and heavy lifting during the end-game phase.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/titan.jpg" alt="2024 Robot">
+            </div>
+        </div>
+        <!-- ... add 7 more tiles ... -->
+         <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2023-2024: MIDAS</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2022-2023: ANUBIS</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2021-2022: HERCULES</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2020-2021: N/A</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2019-2020: HADES 2.0</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2018-2019: HELIOS</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2017-2018: N/A</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2016-2017: APOLLO</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+        <div class="robot-tile">
+            <div class="robot-text">
+                <h3>2015-2016: HERMES 2.0</h3>
+                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
+            </div>
+            <div class="robot-image">
+                <img src="robots/apex.jpg" alt="2025 Robot">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="first" class="page">
+    <!-- Header: No background, bold white centered text -->
+    <header class="first-header">
+        <h1>WHAT IS FIRST</h1>
+    </header>
+
+    <!-- Intro Section -->
+    <section class="content-block">
+        <div class="flex-row">
+            <div class="visual">
+                <img src="/FIRST-Page/FIRST-Logo.png" alt="FIRST Logo">
+            </div>
+            <div class="info">
+                <h2>FIRST</h2>
+                <h3>For Inspiration and Recognition of Science and Technology</h3>
+                <p>FIRST is an acronym for "For The Inspiration and Recognition of Science and Technology". They are an international youth organization that run and administer the First Tech Challenge, First LEGO League Discover, FIRST Lego League Explore, First LEGO League Challenge and First Robotics Challenge robotics challenges. FIRST hosts these to promote and spread the idea of STEM (STEAM) by combining the excitement of sports and rigors of science and technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="white-divider">
+
+    <h2 class="section-title">FIRST PROGRAMS</h2>
+
+    <!-- FLL Section (Photo Left) -->
+    <section class="content-block">
+        <div class="flex-row">
+            <div class="visual">
+                <img src="/FIRST-Page/FLL-Logo.png" alt="FLL Logo">
+            </div>
+            <div class="info">
+                <h2>FIRST LEGO LEAGUE (FLL)</h2>
+                <p>It is a program  run by FIRST that helps introduce the values of STE(A)M to younger audiences (from K to 8) with the help of Lego products. The usage of them creates a fun game for the participants and supports learning about science and technology through the game itself and other aspects of the organization.</p>
+            
+</div>
+              </div>
+        <a href="https://www.firstlegoleague.org/" class="program-btn fll-btn" target="_blank">VISIT FLL WEBSITE</a>
+    </section>
+
+    <!-- FTC Section (Photo Right on Desktop) -->
+    <section class="content-block reverse">
+        <div class="flex-row">
+            <div class="visual">
+                <img src="/FIRST-Page/FTC-Logo.png" alt="FTC Logo">
+            </div>
+            <div class="info">
+                <h2>FIRST TECH CHALLENGE (FTC)</h2>
+                <p>FTC allows students from grades 7-12 to participate in a robot competion that lasts for most of the school year. Students will learn skills of science and technology, while also developing important teamworking skills</p>
+</div>
+              </div>
+        <a href="https://www.firstinspires.org/programs/ftc/" class="program-btn ftc-btn" target="_blank">VISIT FTC WEBSITE</a>
+    </section>
+
+    <!-- FRC Section (Photo Left) -->
+    <section class="content-block">
+        <div class="flex-row">
+            <div class="visual">
+                <img src="/FIRST-Page/FRC-Logo.png" alt="FRC Logo">
+            </div>
+            <div class="info">
+                <h2>FIRST ROBOTICS COMPETITION (FRC)</h2>
+                <p>FRC allows high school students to participate in a robot competition that lasts for about half of the school year. Students will learn skills of science and technology, while also developing important teamworking skills.</p>
+</div>
+              </div>
+        <a href="https://www.firstinspires.org" class="program-btn frc-btn" target="_blank">VISIT FRC WEBSITE</a>
+    </section>
+</div>
+
+
