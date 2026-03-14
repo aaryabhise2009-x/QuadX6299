@@ -48,7 +48,7 @@ nav { background: #000000; color: white; display: flex; justify-content: space-b
 
 body {
   /* 1. Link your image */
-  background-image: url("website-background.png");
+  background-image: url("website-background.webp");
 
   /* 2. Make it cover the whole screen */
   background-size: cover;
