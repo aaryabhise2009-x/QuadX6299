@@ -1,768 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team QuadX 6299</title>
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
+  <style>
+    @font-face { font-family: 'Proxima Nova'; font-weight: 400; src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype'); }
+    @font-face { font-family: 'Proxima Nova'; font-weight: 700; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
+    @font-face { font-family: 'Proxima Nova'; font-weight: 900; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
 
-    <meta charset="UTF-8">
-    <title>Team QuadX 2025-2026</title>
-    <link rel="stylesheet" href="style.css">
+    :root { --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif; --gold: #D4AF37; --gold2: #FFD700; --nav-h: 55px; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; overflow-x: hidden; min-height: 100vh; font-family: var(--font-primary); color: #fff; background-color: #111; }
+    body { background-image: url(website-background.webp); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+    main { padding-top: var(--nav-h); }
+
+    /* TOP NAV — uses ID to avoid any conflicts */
+    #top-nav { position: fixed; top: 0; left: 0; right: 0; height: 55px; background: #000; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; z-index: 9999; box-sizing: border-box; }
+    #top-nav a.logo { display: flex; flex-direction: row; align-items: center; gap: 10px; text-decoration: none; white-space: nowrap; }
+    #top-nav a.logo img { height: 30px; width: auto; }
+    #top-nav a.logo span { color: #fff; font-family: 'Proxima Nova', Arial, Helvetica, sans-serif; font-weight: 700; font-size: 1.1rem; }
+    #top-nav .links { display: flex; align-items: center; gap: 4px; }
+    #top-nav .links a { color: #fff; font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 0.92rem; padding: 6px 12px; text-decoration: none; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    #top-nav .links a:hover { color: #FFD700; }
+    #top-nav .links a.active { color: #FFD700; border-bottom: 2px solid #FFD700; }
+
+    /* HERO */
+    .hero-container { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; min-height: 100vh; padding-bottom: 50px; }
+    .hero-bg-text { font-family: var(--font-primary); font-size: 9rem; font-weight: 900; margin: 0; line-height: 0.8; z-index: 1; pointer-events: none; background: linear-gradient(45deg, #ffd748, #946f00, #ffd748, #946f00, #ffd748, #946f00, #ffd748); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .robot-wrapper { position: relative; width: 60%; max-width: 600px; z-index: 2; pointer-events: none; margin-top: -40px; display: flex; justify-content: center; }
+    .hero-robot { width: 100%; mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 75%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 75%); }
+    .home-button-group { display: flex; gap: 15px; width: 95%; max-width: 1400px; margin-top: -160px; z-index: 10; position: relative; justify-content: center; }
+    .square-btn { flex: 1; height: 250px; border: 2px solid var(--gold); border-radius: 20px; cursor: pointer; overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background-size: cover; background-position: center; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+    .square-btn::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.6); transition: background 0.3s ease; z-index: 1; }
+    .square-btn span { position: relative; z-index: 2; color: #fff; font-family: var(--font-primary); font-weight: 900; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; }
+    .square-btn:hover { transform: translateY(-10px) scale(1.02); border-color: #fff; }
+    .square-btn:hover::before { background: rgba(0,0,0,0.3); }
+    @media (max-width: 900px) { .hero-bg-text { font-size: 4.5rem; } .home-button-group { flex-direction: column; align-items: center; margin-top: 20px; } .square-btn { width: 90%; height: 160px; } }
+
+    /* SUPPORT */
+    .support-section { position: relative; padding: 90px 30px; display: flex; flex-direction: column; align-items: center; text-align: center; overflow: hidden; }
+    .support-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 60%); pointer-events: none; }
+    .support-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .support-heading { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.1; margin: 0 0 20px; max-width: 700px; }
+    .support-heading span { background: linear-gradient(90deg, #ffd748, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .support-subtext { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 540px; line-height: 1.7; margin-bottom: 40px; }
+    .support-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-gold { display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; background: linear-gradient(135deg, #D4AF37, #FFD700); color: #111; font-family: var(--font-primary); font-weight: 900; font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 6px; transition: transform 0.25s ease, box-shadow 0.25s ease; box-shadow: 0 4px 24px rgba(212,175,55,0.35); }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(212,175,55,0.55); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 10px; padding: 14px 34px; border: 2px solid rgba(255,255,255,0.25); color: #fff; font-family: var(--font-primary); font-weight: 700; font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 6px; transition: border-color 0.25s ease, transform 0.25s ease; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+    /* DIVIDER */
+    .section-divider { width: 90%; max-width: 1100px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent); }
+
+    /* FOOTER */
+    footer { padding: 50px 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: rgba(0,0,0,0.55); }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .social-links { display: flex; gap: 14px; }
+    .social-link { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35); }
+    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+    @media (max-width: 600px) { .support-buttons { flex-direction: column; align-items: center; } .btn-gold, .btn-outline { width: 260px; justify-content: center; } }
+
+    /* ABOUT */
+    .about-section { padding: 90px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .about-section .section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .about-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin: 0 0 24px; max-width: 700px; }
+    .about-section p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 680px; line-height: 1.8; margin: 0; }
+
+    /* MARQUEE GALLERY */
+    .gallery-section { padding: 40px 0; overflow: hidden; width: 100%; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-track .photo { width: 320px; height: 210px; margin: 0 10px; border-radius: 12px; overflow: hidden; flex-shrink: 0; border: 1.5px solid rgba(212,175,55,0.2); background: rgba(212,175,55,0.06); }
+    .marquee-track .photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .marquee-track .photo:hover img { transform: scale(1.06); }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  </style>
 </head>
 <body>
-    <nav>
-    <div class="logo">
-    <img src="GOLD-Logo.webp" alt="QuadX Logo" class="nav-icon">
-    <span>QuadX 6299</span>
-    </div>
-    <div class="nav-links">
-        <button onclick="showPage('home')">Home</button>
-        <button onclick="showPage('first')">What is FIRST?</button> <!-- NEW -->
-        <button onclick="showPage('robots')">Robots</button>
-        <button onclick="showPage('outreach')">Outreach</button>
-        <button onclick="showPage('team')">Team</button>
-        <button onclick="showPage('docs')">Documents</button>
-    </div>
-</nav>
 
-
-
-
-    <!-- Home Page -->
-    <div id="home" class="page active">
-    <div class="hero-container">
-        <!-- Background Large Text -->
-        <h1 class="hero-bg-text">TEAM QUADX 6299</h1>
-        
-        <!-- Hovering Robot Image -->
-        <div class="robot-wrapper">
-            <img src="robot-transparent.webp" alt="Our Robot" class="hero-robot">
-        </div>
-
-        <!-- Home Buttons -->
-        <div class="home-button-group">
-    <button class="square-btn btn-season" onclick="showPage('robots')" style="background-image: url('SEASON.webp'); background-size: cover; background-position: center;">
-        <span>ROBOTS</span>
-    </button>
-    <button class="square-btn btn-members" onclick="showPage('team')" style="background-image: url('TEAM-PHOTO.webp'); background-size: cover; background-position: center;">
-        <span>OUR TEAM</span>
-    </button>
-    <button class="square-btn btn-docs" onclick="showPage('outreach')" style="background-image: url('TEAM-HISTORY.webp'); background-size: cover; background-position: center;">
-        <span>OUTREACHES</span>
-    </button>
-</div>
-    </div>
-</div>
-
-
-
-    <!-- Season Page -->
-    <div id="season" class="page">
-        <h2>Season Summary</h2>
-        <div class="content">
-            <h3>Awards</h3>
-            <ul><li>Engineering Excellence</li></ul>
-            <p>Our season focused on precision and speed...</p>
-        </div>
-    </div>
-
-    <!-- Documents Page -->
-    <div id="docs" class="page">
-        <h2>Official Documents</h2>
-        <div class="grid">
-            <a href="sponsor.pdf" class="btn" target="_blank">Sponsorship PDF</a>
-            <a href="volunteer.pdf" class="btn" target="_blank">Volunteer Guide</a>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-
-
-<!-- New Team Members Page -->
-<div id="team" class="page">
-  <h1 class="section-title">Meet the Team</h1>
-  <div class="member-grid">
-    <!-- Repeat this 'member-card' 12 times for your 4x3 grid -->
-    <div class="member-card">
-      <img src="Headshots/Aarya.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Tony Ortega</h3>
-        <p>Co-PM/Hardware Lead</p>
-      </div>
-    </div>
-    
-    <div class="member-card">
-      <img src="Headshots/Amal.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Amal Madapaty</h3>
-        <p>Co-PM/Software Lead</p>
-      </div>
-    </div>
-    <!-- ... add 10 more cards here ... -->
-     <div class="member-card">
-      <img src="Headshots/Aarya.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Aarya Bhise</h3>
-        <p>APM/Marketing Lead</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Aiden.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Aiden Giroux</h3>
-        <p>Software Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Alex.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Alex Ritter</h3>
-        <p>Software Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Sarthak.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Sarthak Kamble</h3>
-        <p>Software Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Baran.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Baran Shafaei</h3>
-        <p>Marketing Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Andrea.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Andrea Joseph</h3>
-        <p>Marketing Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Eeshu.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Eeshu Pachigolla</h3>
-        <p>Hardware Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Seyeon.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Seyeon Kwon</h3>
-        <p>Hardware Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Akash.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Akash Katta</h3>
-        <p>Hardware Member</p>
-      </div>
-    </div>
-    <div class="member-card">
-      <img src="Headshots/Saachi.webp" alt="Member Name">
-      <div class="member-info">
-        <h3>Saachi Arya</h3>
-        <p>Hardware Member</p>
-      </div>
+  <div id="top-nav">
+    <a href="index.html" class="logo">
+      <img src="GOLD-Logo.webp" alt="" onerror="this.style.display='none'">
+      <span>QuadX 6299</span>
+    </a>
+    <div class="links">
+      <a href="index.html" class="active">Home</a>
+      <a href="first.html">What is FIRST?</a>
+      <a href="robots.html">Robots</a>
+      <a href="outreach.html">Outreach</a>
+      <a href="team.html">Team</a>
+      <a href="docs.html">Documents</a>
+      <a href="momentum.html">Momentum</a>
     </div>
   </div>
 
-<div class="history-container">
-  <h1 class="page-title">Team History</h1>
-
-  <!-- Repeat this item 13 times -->
-   <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2025-2026</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        This season was full of ambition and progress. With 6 rookies on the team, we primarily focused on cirriculums and our own QuadX Leadership Camp to promote learning. We built 2 fully funcional robot capable of scoring from the far side with a consistent auto. In terms of outreach, we attended 7 company tours/visits including places like Tesla and Amazon. We hosted many STEM nights and Impulse, a FIRST related 2 day summer camp. We created our own team Viperia 32196 and fundraises $5,500 this season, with $1,300 going in our efforts to create 2 teams in Rwanda in partnership with Stryke 6210 to buy 2 starter kits for the students in Rwanda.
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC SWAT League Championships:<br>
-        - Inspire 3'rd
-      </p>
+  <main>
+    <div class="hero-container">
+      <h1 class="hero-bg-text">TEAM QUADX 6299</h1>
+      <div class="robot-wrapper">
+        <img src="robot-transparent.webp" alt="Our Robot" class="hero-robot">
+      </div>
+      <div class="home-button-group">
+        <a href="robots.html" class="square-btn" style="transition-delay:0s; background-image: url('SEASON.webp');"><span>ROBOTS</span></a>
+        <a href="team.html" class="square-btn" style="transition-delay:0.15s; background-image: url('TEAM-PHOTO.webp');"><span>OUR TEAM</span></a>
+        <a href="outreach.html" class="square-btn" style="transition-delay:0.3s; background-image: url('TEAM-HISTORY.webp');"><span>OUTREACHES</span></a>
+      </div>
     </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2024-2025</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        Our 2024-2025 season had us taking on four different rookies. This year, we focused on having our new rookies brought up to speed, due to some of our notable veterans (namely our marketing lead) leaving at the end of the season. While our robot game was not on par with the previous year's robots, our outreach was great, with tours of Samsung and Dell facilities. Within this, there was also a large amount of community outreach (called Inertia) and professional virtual meetings. These learning experiences for the veterans and rookies was invaluable for improving next season's results.
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Central WALL-E Championship:<br>
-        - Connect 2'nd
-      </p>
+  </main>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <p class="section-label">Who We Are</p>
+    <h2>About Team QuadX 6299</h2>
+    <p>
+      We are Viperbots Team QuadX 6299 from Vandegrift High School in Austin Texas. We compete in the FIRST Tech Challenge and create robots yearly. We are a student-led team that strives to push the boundaries of innovation and learn as much as possible. We also do outreach to interact with the engineering community. This involves participating in company tours and hosting our own events to teach the younger generation.
+    </p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- MARQUEE GALLERY -->
+  <section class="gallery-section">
+    <div class="marquee-track">
+      <div class="photo"><img src="1.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-2.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-3.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-4.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-5.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-6.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-7.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-8.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-9.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-10.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="PHOTO-1.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-2.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-3.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-4.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-5.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-6.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-7.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-8.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-9.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div><div class="photo"><img src="PHOTO-10.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
     </div>
-  </details>
-  <!-- End of Repeat -->
-   <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2023-2024</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        For our 2023-2024 season, we only had two rookies on our team, with the remainder being veterans. Despite this, we unfortunately were not able to advance past regionals. Even though our progression through the season was rough, we still took the time to outreach to our community by hosting events such as our coding basics camp CodeX, as well as learn several different techniques from industry professionals.
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Central WALL-E Championship:<br>
-        - Inspire 3'rd<br>
-        FTC Central Area Championship<br>
-        - Design 3'rd
-      </p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section class="support-section">
+    <p class="support-label">Get Involved</p>
+    <h2 class="support-heading">Sponsor our Team</h2>
+    <p class="support-subtext">Team QuadX 6299 strives to create high level robots and create outreach that can impact the community around us. Your support can help us acheive these things!</p>
+    <div class="support-buttons">
+      <a href="YOUR_SPONSORSHIP_PACKET_LINK_HERE" class="btn-gold" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Sponsorship Packet
+      </a>
+      <a href="mailto:quadx6299@gmail.com" class="btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Us
+      </a>
     </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2022-2023</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        The beginning of the season was rough, due to little consideration for software in our design process, which caused problems early on. Thankfully, our team had much experience in judging, which helped us make it to worlds, as well as being a finalist for the design award in our division. Being at worlds was an incredible experience, with lots of excitement and fun to be had by the entire team. We also did a lot of outreach in multiple areas, even hosting a STEM event known as Momentum.
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Texas Central GEMS League Championsiphs:<br>
-        - Inspire 3'rd<br>
-        FTC Texas Central Regional Championship:<br>
-        - Connect 2'nd<br>
-        FTC Texas State Championship:<br>
-        - Inspire 2'nd<br>
-        FTC World Championship - Franklin Division:<br>
-        - Design 3'rd
-      </p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <footer>
+    <div class="footer-logo">QuadX 6299</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="first.html">What is FIRST?</a>
+      <a href="robots.html">Robots</a>
+      <a href="outreach.html">Outreach</a>
+      <a href="team.html">Team</a>
+      <a href="docs.html">Documents</a>
+      <a href="momentum.html">Momentum</a>
     </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2021-2022</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        With an almost entirely rookie team and the pandemic's aftermath, the 2021 season was difficult but we also made big changes for the team as a whole. Meeting virtually was utilized heavily after the pandemic. Our end of year Momentum Career Showcase event was even held virtually, making STEM expertise accessible to more people. We continued to build our relationships with these industry professionals which influenced our future outreach opportunities. We also brought back some of our team traditions to boost team morale and made big strides to increase commitment to robotics. Despite the challenges we faced, we were able to influence and help many both in and outside of the STEM community while redefining what it means for us to be a successful team.
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Texas Central Austin Metro League Championship:<br>
-        - Design 1'st<br>
-        FTC Texas Central Championship:<br>
-        - Connect 1'st
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2020-2021</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        With an almost entirely rookie team and an emerging pandemic, the 2020 season was extremely difficult. Meeting times and spaces were restricted which made training our new team more challenging. Yet, we persevered and managed to reach many with FIRST values. The Argentinian camp we hosted was entirely in Spanish and available on our Youtube channel, making STEM resources and coding classes more accessible to those who do not speak English. We continued our relationship with South Africa and further helped the Greater Tzaneen Community FTC teams. We also continued our advocacy for STEM locally, speaking with legislature in hopes to improve STEM funding. Despite the many challenges of the pandemic, we were able to influence and help many. 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC League Championship:<br>
-        - Inspire 1'st<br>
-        FTC Texas State Cup:<br>
-        - Motivate 1'st<br>
-        FTC Alamo Regional Championship:<br>
-        - Motivate 1'st
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2019-2020</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        A team of all veteran members, QuadX had a strong base for the 2019 - 2020 season. Wanting to push the boundaries of what a small group of individuals could achieve, we took on our biggest endeavor yet and travelled to Tzaneen, South Africa to set up 2 FTC teams. Coming so close to our goal of winning Inspire at Worlds last year we didn't want to leave anything on the table. Unfortunately, after an already successful season winning the Inspire awards at our League Championship and Regional Championship our season was cut short due to COVID-19. 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC League Championship:<br>
-        - Division Finalist<br>
-        - Inspire 1'st<br>
-        - Connect 2'nd<br>
-        - Innovate 2'nd<br>
-        - Motivate 2'nd<br>
-        - Control 2'nd<br>
-        FTC Alamo Regional Championship:<br>
-        - Inspire 1'st<br>
-        - Think 2'nd<br>
-        - Connect 3'rd<br>
-        - Motivate 3'rd<br>
-        - Control 2'nd<br>
-        FTC World Championship:<br>
-        - Cancelled due to COVID-19
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2018-2019</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        With only one team member graduating from the year prior, QuadX had a strong base for the 2018 - 2019 season. We used our relationships built from the year before to design a competitive robot and even stronger team bond, culminating at the World Championships in Houston. Returning to the stage after a year absence, we were assured we had learned from our experiences bringing home the Inspire Finalist Award. 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC League Championship:<br>
-        - Winning Alliance First Pick<br>
-        - Inspire 2'nd<br>
-        - Motivate 1'st<br>
-        - Innovate 3'rd<br>
-        FTC Alamo Regional Championship:<br>
-        - Winning Alliance First Pick<br>
-        - Inspire 3'rd<br>
-        - Design 1'st<br>
-        - Think 3'rd<br>
-        - Connect 3'rd<br>
-        - Motivate 3'rd<br>
-        FTC World Championship:<br>
-        - Inspire Finalist Award
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2017-2018</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        Starting the season with more rookies than veterans, we had a lot of learning to do jumping into our season. Though there were many bumps in the road, we always used our experience to better ourselves for the next time. Although our season appeared to be over after the Alamo Regional Championships, we continued in off-season AML and were Winning Alliance First Pick at the AML "World Championships" 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC AML Offseason Event #5:<br>
-        - Winning Alliance First Pick<br>
-        FTC League Championship:<br>
-        - Finalist Alliance First Pick<br>
-        - Connect 3'rd<br>
-        FTC Alamo Wildcard Qualifier:<br>
-        - Inspire 2'nd<br>
-        - Control 1'st<br>
-        - Connect 3'rd<br>
-        - Finalist Alliance Second Pick<br>
-        FTC Alamo Regional Championship:<br>
-        - Finalist Alliance First Pick
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2016-2017</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        After a successful past few years we were ready to improve even more, bringing new members with some fresh perspective on to the team. Using what've learned from previous years, as well as incorporating new, innovative ideas, we came together to create our masterpiece "Apollo." We were able to return to the World Championships in Houston, Texas and win the Design Award for the third year in a row. 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC League Championship:<br>
-        - Inspire 1'st<br>
-        - Winning Alliance Captain<br>
-        FTC Alamo Regional Championship:<br>
-        - Inspire 1'st<br>
-        - Event Finalist Alliance First Pick<br>
-        FTC South Super Regionals:<br>
-        - PTC Design Award<br>
-        FTC World Championship:<br>
-        - PTC Design Award
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2015-2016</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        After having the exact same team for the past two years, our team structure changed drastically with the graduation of many of our old members to include 6 rookies. We didn't let these changes stop us from making it back to the World Championships and winning the Design Award for the second year in a row. 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Memorial Qualifier 12/6/15:<br>
-        - Inspire 1'st<br>
-        - Winning Alliance First Pick<br>
-        FTC Vandegrift Qualifer:<br>
-        - Winning Alliance Captain<br>
-        - PTC Design Award<br>
-        FTC Alamo Region Championship:<br>
-        - Inspire 3'rd<br>
-        - PTC Design Award<br>
-        - Control 2'nd<br>
-        FTC South Super Regionals:<br>
-        - 5'th Place in Qualification Matches<br>
-        FTC World Championship:<br>
-        - PTC Design Award<br>
-        - Division Finalist Alliance First Pick
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2014-2015</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        For our second year together, we knew exactly what we would need to do in order to be as successful as our rookie year. Now a group of friends who work exceptionally well together, we built another fast and maneuverable but simple robot, this time named “X.” We made it back to the World Championship, and became the first team from Texas to receive an award- the Design Award! 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Viperbots Open 11/15/14:<br>
-        - "Ball Leader" Award<br>
-        - High Score during Qualifications<br>
-        FTC Memorial Qualifier 12/6/14:<br>
-        - 1'st Place overall in Qualification Rounds<br>
-        - Innovate Finalist<br>
-        - Think Finalist<br>
-        - Design Finalist<br>
-        - Connect Finalist<br>
-        - Inspire 2'nd<br>
-        - Winning Alliance Captain<br>
-        FTC Harlandale Qualifier 1/31/15:<br>
-        - 1'st Place overall in Qualification Rounds<br>
-        - PTC Design Finalist<br>
-        - Connect Finalist<br>
-        - Think 1'st<br>
-        - Inspire 2'nd<br>
-        - Winning Alliance Captain<br>
-        FTC Alamo Region Championship:<br>
-        - Winning Alliance Captain<br>
-        - Inspire 2'nd<br>
-        FTC South Super Regionals:<br>
-        - Event Finalist Alliance First Pick<br>
-        FTC World Championship:<br>
-        - PTC Design Award<br>
-        - Finalist Alliance First Pick
-      </p>
-    </div>
-  </details>
-  <details class="history-item">
-    <summary class="year-header">
-      <span class="year-text">2013-2014</span>
-    </summary>
-    <div class="content">
-      <p class="season-desc">
-        While the team QuadX had been in existence for a year already, it was essentially our rookie year, since everyone was new to the team- we had 5 rookies, and nobody had ever been a member of the Hardware team. Through hard work, creativity, and sheer will, however, we made it to the World Championship! We had never expected to have one of the best-performing robots in the world at the beginning the year, and making it to the finals at Worlds was a fantastic conclusion to our first year together. 
-      </p>
-      <h3 class="awards-title">Awards Won</h3>
-      <p class="awards-list">
-        FTC Vandegrift Qualifier 12/7/13:<br>
-        - Inspire 2'nd<br>
-        - Finalist Alliance First Pick<br>
-        - World Record in the Qualification Rounds<br>
-        FTC Conally Double Qualifier 1/24/14:<br>
-        - Winning Alliance Captain<br>
-        - 1'st Place overall in Qualification Rounds<br>
-        - Innovate Finalist<br>
-        - "Best Alliance Partner Evah" Brick given by 7161 Hydra<br>
-        FTC Alamo Region Championship:<br>
-        - Innovate 1'st<br>
-        - Think Finalist<br>
-        FTC South Super Regionals:<br>
-        - Finalist Alliance Captain<br>
-        - Inspire 2'nd<br>
-        - Innovate 1'st<br>
-        FTC World Championship:<br>
-        - Finalist Alliance First Pick
-      </p>
-    </div>
-  </details>
-  
-
-</div>
-
-</div>
-
-<div id="outreach" class="page">
-    <h2 class="section-title">Our Outreach History</h2>
-    <div class="outreach-grid">
-        <!-- Button for 2025-2026 -->
-        <button class="outreach-tile" onclick="showPage('outreach-25-26')" style="background-image: url('OUTREACH-HEADERS/25-26:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2025-2026 Outreach</span>
-            </div>
-        </button>
-
-        <!-- Button for 2024-2025 -->
-        <button class="outreach-tile" onclick="showPage('outreach-24-25')" style="background-image: url('OUTREACH-HEADERS/24-25:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2024-2025 Outreach</span>
-            </div>
-        </button>
-
-        <!-- Repeat this block 7 more times to complete the 3x3 grid (9 total) -->
-        <!-- You can use a placeholder image if you don't have photos for all years yet -->
-         <button class="outreach-tile" onclick="showPage('outreach-23-24')" style="background-image: url('OUTREACH-HEADERS/23-24:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2023-2024 Outreach</span>
-            </div>
-        </button>
-        <button class="outreach-tile" onclick="showPage('outreach-22-23')" style="background-image: url('OUTREACH-HEADERS/22-23:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2022-2023 Outreach</span>
-            </div>
-        </button>
-        <button class="outreach-tile" onclick="showPage('outreach-21-22')" style="background-image: url('OUTREACH-HEADERS/21-22:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2021-2022 Outreach</span>
-            </div>
-        </button>
-        <button class="outreach-tile" onclick="showPage('outreach-20-21')" style="background-image: url('OUTREACH-HEADERS/20-21:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2020-2021 Outreach</span>
-            </div>
-        </button>
-        <button class="outreach-tile" onclick="showPage('outreach-19-20')" style="background-image: url('OUTREACH-HEADERS/19-20:OUTREACH.webp');">
-            <div class="tile-overlay">
-                <span>2019-2020 Outreach</span>
-            </div>
-        </button>
-        <button class="outreach-tile" onclick="showPage('outreach-18-19')" style="background-image: url('');">
-            <div class="tile-overlay">
-                <span>2018-2019 Outreach</span>
-            </div>
-        </button>
-        <button class="outreach-tile" onclick="showPage('outreach-17-18')" style="background-image: url('outreach25.jpg');">
-            <div class="tile-overlay">
-                <span>2017-2018 Outreach</span>
-            </div>
-        </button>
-    </div>
-</div>
-
-<div id="outreach-25-26" class="page">
-    <h2>2025-2026 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-24-25" class="page">
-    <h2>2024-2025 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-23-24" class="page">
-    <h2>2023-2024 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-22-23" class="page">
-    <h2>2022-2023 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-21-22" class="page">
-    <h2>2021-2022 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-20-21" class="page">
-    <h2>2020-2021 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-19-20" class="page">
-    <h2>2019-2020 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-18-19" class="page">
-    <h2>2018-2019 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="outreach-17-18" class="page">
-    <h2>2017-2018 Outreach Details</h2>
-    <button onclick="showPage('outreach')">← Back to Outreach</button>
-</div>
-
-<div id="robots" class="page">
-    <h2 class="section-title">OUR ROBOTS</h2>
-    <div class="robot-showcase">
-        <!-- Repeat this robot-tile 9 times -->
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2025-2026: ???</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2024-2025: ATLAS</h3>
-                <p>Titan was our most robust build yet, focused on defensive maneuvers and heavy lifting during the end-game phase.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/titan.webp" alt="2024 Robot">
-            </div>
-        </div>
-        <!-- ... add 7 more tiles ... -->
-         <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2023-2024: MIDAS</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2022-2023: ANUBIS</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2021-2022: HERCULES</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2020-2021: N/A</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2019-2020: HADES 2.0</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2018-2019: HELIOS</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2017-2018: N/A</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2016-2017: APOLLO</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-        <div class="robot-tile">
-            <div class="robot-text">
-                <h3>2015-2016: HERMES 2.0</h3>
-                <p>Designed for high-speed scoring and autonomous precision, Apex features a dual-intake system and a custom 4-stage lift.</p>
-            </div>
-            <div class="robot-image">
-                <img src="robots/apex.webp" alt="2025 Robot">
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="first" class="page">
-    <!-- Header: No background, bold white centered text -->
-    <header class="first-header">
-        <h1>WHAT IS FIRST</h1>
-    </header>
-
-    <!-- Intro Section -->
-    <section class="content-block">
-        <div class="flex-row">
-            <div class="visual">
-                <img src="FIRST-Page/FIRST-Logo.webp" alt="FIRST Logo">
-            </div>
-            <div class="info">
-                <h2>FIRST</h2>
-                <h3>For Inspiration and Recognition of Science and Technology</h3>
-                <p>FIRST is an acronym for "For The Inspiration and Recognition of Science and Technology". They are an international youth organization that run and administer the First Tech Challenge, First LEGO League Discover, FIRST Lego League Explore, First LEGO League Challenge and First Robotics Challenge robotics challenges. FIRST hosts these to promote and spread the idea of STEM (STEAM) by combining the excitement of sports and rigors of science and technology.</p>
-            </div>
-        </div>
-    </section>
-
-    <hr class="white-divider">
-
-    <h2 class="section-title">FIRST PROGRAMS</h2>
-
-    <!-- FLL Section (Photo Left) -->
-    <section class="content-block">
-        <div class="flex-row">
-            <div class="visual">
-                <img src="FIRST-Page/FLL-Logo.webp" alt="FLL Logo">
-            </div>
-            <div class="info">
-                <h2>FIRST LEGO LEAGUE (FLL)</h2>
-                <p>It is a program  run by FIRST that helps introduce the values of STE(A)M to younger audiences (from K to 8) with the help of Lego products. The usage of them creates a fun game for the participants and supports learning about science and technology through the game itself and other aspects of the organization.</p>
-            
-</div>
-              </div>
-        <a href="https://www.firstlegoleague.org/" class="program-btn fll-btn" target="_blank">VISIT FLL WEBSITE</a>
-    </section>
-
-    <!-- FTC Section (Photo Right on Desktop) -->
-    <section class="content-block reverse">
-        <div class="flex-row">
-            <div class="visual">
-                <img src="FIRST-Page/FTC-Logo.webp" alt="FTC Logo">
-            </div>
-            <div class="info">
-                <h2>FIRST TECH CHALLENGE (FTC)</h2>
-                <p>FTC allows students from grades 7-12 to participate in a robot competion that lasts for most of the school year. Students will learn skills of science and technology, while also developing important teamworking skills</p>
-</div>
-              </div>
-        <a href="https://www.firstinspires.org/programs/ftc/" class="program-btn ftc-btn" target="_blank">VISIT FTC WEBSITE</a>
-    </section>
-
-    <!-- FRC Section (Photo Left) -->
-    <section class="content-block">
-        <div class="flex-row">
-            <div class="visual">
-                <img src="FIRST-Page/FRC-Logo.webp" alt="FRC Logo">
-            </div>
-            <div class="info">
-                <h2>FIRST ROBOTICS COMPETITION (FRC)</h2>
-                <p>FRC allows high school students to participate in a robot competition that lasts for about half of the school year. Students will learn skills of science and technology, while also developing important teamworking skills.</p>
-</div>
-              </div>
-        <a href="https://www.firstinspires.org" class="program-btn frc-btn" target="_blank">VISIT FRC WEBSITE</a>
-    </section>
-</div>
-
-
+    <div class="social-links">
+      <a href="https://instagram.com/YOUR_HANDLE" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="https://x.com/YOUR_HANDLE" class="social-link" target="_blank" rel="noopener" aria-label="X / Twitter">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://linkedin.com/company/YOUR_PAGE" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon – QuadX 6299</title>
+  <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
+  <script src="shared.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Proxima Nova';
+      font-weight: 400;
+      font-style: normal;
+      src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Proxima Nova';
+      font-weight: 700;
+      font-style: normal;
+      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Proxima Nova';
+      font-weight: 900;
+      font-style: normal;
+      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
+    }
+
+    :root {
+      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
+      --gold:  #D4AF37;
+      --gold2: #FFD700;
+      --nav-h: 55px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-family: var(--font-primary);
+      color: #fff;
+      background-color: #111;
+    }
+
+    body {
+      background-image: url(website-background.webp);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    main {
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── CENTERED CARD ── */
+    .coming-soon-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 70px 60px;
+      max-width: 560px;
+      width: 90%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+
+      /* Entrance animation */
+      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Gold icon */
+    .cs-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
+      border: 1px solid rgba(212,175,55,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--gold2);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .cs-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .cs-heading {
+      font-family: var(--font-primary);
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin: 0;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .cs-subtext {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin: 0;
+      max-width: 380px;
+    }
+
+    /* Gold divider line */
+    .cs-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 2px;
+    }
+
+    /* Back button */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 12px 30px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .cs-back svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.2s ease;
+    }
+
+    .cs-back:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .cs-back:hover svg { transform: translateX(-3px); }
+
+    @media (max-width: 500px) {
+      .coming-soon-card { padding: 48px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+
+  <main>
+    <div class="coming-soon-card">
+
+      <div class="cs-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+
+      <span class="cs-label">Outreach</span>
+
+      <h1 class="cs-heading">INFO COMING SOON</h1>
+
+      <div class="cs-divider"></div>
+
+      <p class="cs-subtext">
+        We're still putting this page together. Check back soon to see our full outreach recap for this season.
+      </p>
+
+      <a href="outreach.html" class="cs-back">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Outreach
+      </a>
+
+    </div>
+  </main>
+
+  <script>document.addEventListener('DOMContentLoaded', () => renderNav('outreach'));</script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documents – QuadX 6299</title>
+  <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
+  <script src="shared.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Proxima Nova';
+      font-weight: 400;
+      font-style: normal;
+      src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Proxima Nova';
+      font-weight: 700;
+      font-style: normal;
+      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Proxima Nova';
+      font-weight: 900;
+      font-style: normal;
+      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
+    }
+
+    :root {
+      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
+      --gold:  #D4AF37;
+      --gold2: #FFD700;
+      --nav-h: 55px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-family: var(--font-primary);
+      color: #fff;
+      background-color: #111;
+    }
+
+    body {
+      background-image: url(website-background.webp);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    main { padding-top: var(--nav-h); }
+
+    /* ── SCROLL REVEAL ── */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(32px); }
+    .reveal.visible { animation: fadeSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .reveal.d1 { animation-delay: 0.06s; }
+    .reveal.d2 { animation-delay: 0.14s; }
+    .reveal.d3 { animation-delay: 0.22s; }
+    .reveal.d4 { animation-delay: 0.30s; }
+    .reveal.d5 { animation-delay: 0.38s; }
+
+    /* ── PAGE WRAPPER ── */
+    #docs-page {
+      padding: 60px 5% 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding: 40px 0 0;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-family: var(--font-primary);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      margin: 0 0 14px;
+      line-height: 1;
+      color: #fff;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 460px;
+      line-height: 1.7;
+      margin: 0 auto;
+    }
+
+    /* ── DOCS GRID ── */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 880px;
+    }
+
+    /* ── DOC CARD ── */
+    .doc-card {
+      position: relative;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 20px;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-decoration: none;
+      color: #fff;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s ease,
+                  background 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+
+    /* Subtle gold shimmer on top edge */
+    .doc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(212,175,55,0.4);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,175,55,0.1);
+    }
+
+    .doc-card:hover::before { opacity: 1; }
+
+    /* ── CARD ICON ── */
+    .doc-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .doc-card:hover .doc-icon {
+      background: rgba(212,175,55,0.18);
+      border-color: rgba(212,175,55,0.5);
+    }
+
+    .doc-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── CARD TEXT ── */
+    .doc-info { flex: 1; }
+
+    .doc-type {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+
+    .doc-name {
+      font-family: var(--font-primary);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: #fff;
+      margin: 0 0 6px;
+      line-height: 1.2;
+    }
+
+    .doc-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── CARD FOOTER ── */
+    .doc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .doc-format {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .doc-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.2s, gap 0.2s;
+    }
+
+    .doc-arrow svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.2s;
+    }
+
+    .doc-card:hover .doc-arrow {
+      color: var(--gold);
+      gap: 8px;
+    }
+
+    .doc-card:hover .doc-arrow svg { transform: translateX(2px); }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
+    }
+
+    /* ── CONTACT NUDGE ── */
+    .contact-nudge {
+      margin-top: 64px;
+      width: 100%;
+      max-width: 880px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nudge-text h3 {
+      font-family: var(--font-primary);
+      font-weight: 900;
+      font-size: 1.1rem;
+      margin: 0 0 6px;
+    }
+
+    .nudge-text p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      margin: 0;
+    }
+
+    .nudge-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #D4AF37, #FFD700);
+      color: #111;
+      font-family: var(--font-primary);
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.35);
+      white-space: nowrap;
+    }
+
+    .nudge-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(212,175,55,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer { padding: 50px 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: rgba(0,0,0,0.55); }
+    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .social-links { display: flex; gap: 14px; }
+    .social-link { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35); }
+    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 620px) {
+      .docs-grid { grid-template-columns: 1fr; }
+      .contact-nudge { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-mount"></div>
+
+  <main id="docs-page">
+
+    <!-- ── PAGE HEADER ── -->
+    <header class="page-header">
+      <span class="section-label reveal">Resources</span>
+      <h1 class="page-title reveal d1">DOCUMENTS</h1>
+      <p class="page-subtitle reveal d2">Here are our official resources by QuadX 6299 including sponsorship information, volunteering information, and information to get you started in FTC</p>
+    </header>
+
+    <!-- ── DOC CARDS ── -->
+    <div class="docs-grid">
+
+      <!-- Sponsorship Packet -->
+      <a class="doc-card reveal d1" href="sponsor.pdf" target="_blank" rel="noopener">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <h2 class="doc-name">Sponsorship Packet</h2>
+          <p class="doc-desc">Learn how your organization can support Team QuadX 6299. Includes sponsorship tiers, team impact data, and branding opportunities.</p>
+        </div>
+        <div class="doc-footer">
+          <span class="doc-format">PDF</span>
+          <span class="doc-arrow">
+            Open
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Volunteer Guide -->
+      <a class="doc-card reveal d2" href="volunteer.pdf" target="_blank" rel="noopener">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <h2 class="doc-name">Volunteer Guide</h2>
+          <p class="doc-desc">Everything you need to know about volunteering at FIRST events with QuadX. Includes event roles, expectations, time commitments, and how to sign up.</p>
+        </div>
+        <div class="doc-footer">
+          <span class="doc-format">PDF</span>
+          <span class="doc-arrow">
+            Open
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- FTC Game Manual -->
+      <a class="doc-card reveal d3" href="https://ftc-resources.firstinspires.org/file/ftc/game/manual" target="_blank" rel="noopener">
+        <div class="doc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="doc-info">
+          <h2 class="doc-name">FTC QuadX handbook</h2>
+          <p class="doc-desc">A resource we made to help FTC teams with their season. Includes information about building your robot, team management, and outreach.</p>
+        </div>
+        <div class="doc-footer">
+          <span class="doc-format">PDF</span>
+          <span class="doc-arrow">
+            Open
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ── CONTACT NUDGE ── -->
+    <div class="contact-nudge reveal">
+      <div class="nudge-text">
+        <h3>Have any questions?</h3>
+        <p>Reach out directly and we'll get you what you need.</p>
+      </div>
+      <a href="mailto:teamquadx6299@gmail.com" class="nudge-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Us
+      </a>
+    </div>
+
+  </main>
+
+  <div class="section-divider"></div>
+
+  <footer>
+    <div class="footer-logo">QuadX 6299</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="first.html">What is FIRST?</a>
+      <a href="robots.html">Robots</a>
+      <a href="outreach.html">Outreach</a>
+      <a href="team.html">Team</a>
+      <a href="docs.html">Documents</a>
+      <a href="momentum.html">Momentum</a>
+    </div>
+    <div class="social-links">
+      <a href="https://instagram.com/YOUR_HANDLE" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+      <a href="https://youtube.com/@YOUR_CHANNEL" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="https://x.com/YOUR_HANDLE" class="social-link" target="_blank" rel="noopener" aria-label="X / Twitter">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://linkedin.com/company/YOUR_PAGE" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => renderNav('docs'));</script>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
