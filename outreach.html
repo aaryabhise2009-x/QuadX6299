@@ -15,196 +15,83 @@
       --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
       --gold: #D4AF37;
       --gold2: #FFD700;
-      --nav-h: 55px;
+      --nav-h: 70px;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; overflow-x: hidden; min-height: 100vh; font-family: var(--font-primary); color: #fff; background-color: #111; }
     body { background-image: url(website-background.webp); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
-    main { padding-top: var(--nav-h); }
 
-    /* ── PAGE WRAPPER ── */
     #outreach-page {
       min-height: 100vh;
-      padding: 60px 5% 100px;
+      padding: var(--nav-h) 5% 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* ── PAGE HEADER ── */
-    .page-header { text-align: center; margin-bottom: 56px; padding: 40px 0 0; }
-    .section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
-    .page-title { font-family: var(--font-primary); font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.6rem); margin: 0 0 14px; line-height: 1; color: #fff; }
-    .page-subtitle { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 480px; line-height: 1.7; margin: 0 auto; }
-
-    /* ── GRID ── */
-    .outreach-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      width: 100%;
-      max-width: 1020px;
+    .page-header { text-align: center; margin-bottom: 40px; padding: 40px 0 0; width: 100%; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 12px; }
+    .page-title {
+      font-weight: 900; font-size: clamp(2.2rem, 8vw, 3.4rem); margin: 0 auto 16px;
+      background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
+    .page-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.6; margin: 0 auto; padding: 0 10px; }
 
-    /* ── TILE ── */
-    /* Key: position:relative + explicit height so absolute children anchor correctly */
+    .outreach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1020px; }
     .outreach-tile {
-      position: relative;
-      display: block;
-      height: 240px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      position: relative; display: block; height: 240px; border-radius: 18px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); backdrop-filter: blur(14px);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
       text-decoration: none;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.3s ease,
-                  box-shadow 0.3s ease;
     }
 
-    /* ── PHOTO — fills the whole tile ── */
-    .tile-photo {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0.78;
-      transition: transform 0.5s ease, opacity 0.3s ease;
-      z-index: 0;
-    }
+.tile-placeholder {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.1); z-index: 0; transition: 0.5s;
+}
+.tile-placeholder svg { width: 60px; height: 60px; fill: currentColor; }
 
-    /* ── GRADIENT — darkens bottom so text is legible ── */
-    .tile-gradient {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.82) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
 
-    /* ── PLACEHOLDER (no photo) ── */
-    .tile-placeholder {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(212,175,55,0.06), rgba(0,0,0,0.3));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 0;
-    }
-    .tile-placeholder svg { width: 42px; height: 42px; opacity: 0.15; fill: var(--gold); }
+    .tile-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.78; transition: 0.5s; z-index: 0; }
+    .tile-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.85) 100%); z-index: 1; }
+    .tile-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px 18px; z-index: 2; }
+    .tile-title { font-weight: 900; font-size: 1rem; color: #fff; margin: 0 0 4px; }
+    .tile-arrow { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.4); transition: 0.2s; }
+    .tile-arrow svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2.5; }
 
-    /* ── TEXT — pinned to bottom ── */
-    .tile-body {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 16px 20px 20px;
-      z-index: 2;
-    }
-
-    .tile-title {
-      font-family: var(--font-primary);
-      font-weight: 900;
-      font-size: 1.05rem;
-      color: #fff;
-      margin: 0 0 6px;
-      line-height: 1.2;
-    }
-
-    .tile-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      transition: color 0.2s ease, gap 0.2s ease;
-    }
-    .tile-arrow svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease; flex-shrink: 0; }
-
-    /* ── BADGE (top-right) ── */
-    .badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 3;
-      border-radius: 100px;
-      padding: 4px 11px;
-      font-size: 0.67rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
+    .badge { position: absolute; top: 12px; right: 12px; z-index: 3; border-radius: 100px; padding: 4px 10px; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; }
     .badge-current { background: linear-gradient(135deg, #D4AF37, #FFD700); color: #111; }
-    .badge-soon { background: rgba(0,0,0,0.55); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); }
+    .badge-past { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); }
 
-    /* ── READY HOVER ── */
-    .outreach-tile.ready { cursor: pointer; }
-    .outreach-tile.ready:hover { transform: translateY(-6px) scale(1.015); border-color: rgba(212,175,55,0.5); box-shadow: 0 12px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(212,175,55,0.15); }
-    .outreach-tile.ready:hover .tile-photo { transform: scale(1.07); opacity: 1; }
-    .outreach-tile.ready:hover .tile-arrow { color: var(--gold); gap: 10px; }
-    .outreach-tile.ready:hover .tile-arrow svg { transform: translateX(3px); }
+    .outreach-tile:hover { transform: translateY(-6px) scale(1.015); border-color: rgba(212,175,55,0.5); }
+    .outreach-tile:hover .tile-photo { transform: scale(1.07); opacity: 1; }
+    .outreach-tile:hover .tile-arrow { color: var(--gold); gap: 10px; }
 
-    /* ── COMING SOON ── */
-    .outreach-tile.coming-soon { cursor: default; opacity: 0.5; filter: grayscale(50%); }
-
-    /* ── DIVIDER ── */
-    .section-divider { width: 90%; max-width: 1100px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent); }
-
-    /* ── FOOTER ── */
-    footer { padding: 50px 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: rgba(0,0,0,0.55); }
-    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
-    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .social-links { display: flex; gap: 14px; }
-    .social-link { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
-    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35); }
-    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
-
-    /* ── SCROLL REVEAL ── */
     @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
     .reveal { opacity: 0; transform: translateY(32px); }
     .reveal.visible { animation: fadeSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
     .reveal.d1 { animation-delay: 0.05s; }
     .reveal.d2 { animation-delay: 0.10s; }
     .reveal.d3 { animation-delay: 0.15s; }
-    .reveal.d4 { animation-delay: 0.20s; }
-    .reveal.d5 { animation-delay: 0.25s; }
-    .reveal.d6 { animation-delay: 0.30s; }
-    .reveal.d7 { animation-delay: 0.35s; }
-    .reveal.d8 { animation-delay: 0.40s; }
-    .reveal.d9 { animation-delay: 0.45s; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) { .outreach-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 580px) { .outreach-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .outreach-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 580px) { .outreach-grid { grid-template-columns: 1fr; gap: 16px; } }
   </style>
 </head>
 <body>
   <div id="nav-mount"></div>
 
   <main id="outreach-page">
-
     <header class="page-header">
       <span class="section-label reveal">Community Impact</span>
       <h1 class="page-title reveal d1">OUTREACH</h1>
-      <p class="page-subtitle reveal d2">Every season we go beyond just making a robot, we make sure to have outreach with the commuinity to learn from many industry professionals and teach the younger generation about robotics.</p>
+      <p class="page-subtitle reveal d2">Every season we go beyond just making a robot, we make sure to have outreach with the community to learn from many industry professionals and teach the younger generation about robotics.</p>
     </header>
 
     <div class="outreach-grid">
-
-      <!-- 2025–2026 · CURRENT SEASON -->
-      <a class="outreach-tile ready reveal d1" href="outreach-coming-soon.html">
+      <a class="outreach-tile reveal d1" href="outreach2526.html">
         <span class="badge badge-current">Current Season</span>
         <img class="tile-photo" src="OUTREACH-HEADERS/25-26:OUTREACH.webp" alt="2025–2026 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
@@ -214,8 +101,8 @@
         </div>
       </a>
 
-      <!-- 2024–2025 · INFO COMING SOON PAGE -->
-      <a class="outreach-tile ready reveal d2" href="outreach-coming-soon.html">
+      <a class="outreach-tile reveal d2" href="outreach2425.html">
+        <span class="badge badge-past">Previous Season</span>
         <img class="tile-photo" src="OUTREACH-HEADERS/24-25:OUTREACH.webp" alt="2024–2025 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
@@ -224,8 +111,8 @@
         </div>
       </a>
 
-      <!-- 2023–2024 -->
-      <a class="outreach-tile ready reveal d3" href="outreach-coming-soon.html">
+      <a class="outreach-tile reveal d3" href="outreach2324.html">
+        <span class="badge badge-past">Previous Season</span>
         <img class="tile-photo" src="OUTREACH-HEADERS/23-24:OUTREACH.webp" alt="2023–2024 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
@@ -234,9 +121,9 @@
         </div>
       </a>
 
-      <!-- 2022–2023 -->
-      <a class="outreach-tile ready reveal d4" href="outreach-coming-soon.html">
-        <img class="tile-photo" src="OUTREACH-HEADERS/22-23:OUTREACH.webp" alt="2022–2023 Outreach" onerror="this.style.display='none'">
+      <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
+        <span class="badge badge-past">Previous Season</span>
+        <img class="tile-photo" src="OUTREACH-HEADERS/22-23:OUTREACH.webp" alt="2023–2024 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
           <h3 class="tile-title">2022–2023 Outreach</h3>
@@ -244,9 +131,9 @@
         </div>
       </a>
 
-      <!-- 2021–2022 -->
-      <a class="outreach-tile ready reveal d5" href="outreach-coming-soon.html">
-        <img class="tile-photo" src="OUTREACH-HEADERS/21-22:OUTREACH.webp" alt="2021–2022 Outreach" onerror="this.style.display='none'">
+      <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
+        <span class="badge badge-past">Previous Season</span>
+        <img class="tile-photo" src="OUTREACH-HEADERS/21-22:OUTREACH.webp" alt="2023–2024 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
           <h3 class="tile-title">2021–2022 Outreach</h3>
@@ -254,9 +141,9 @@
         </div>
       </a>
 
-      <!-- 2020–2021 -->
-      <a class="outreach-tile ready reveal d6" href="outreach-coming-soon.html">
-        <img class="tile-photo" src="OUTREACH-HEADERS/20-21:OUTREACH.webp" alt="2020–2021 Outreach" onerror="this.style.display='none'">
+      <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
+        <span class="badge badge-past">Previous Season</span>
+        <img class="tile-photo" src="OUTREACH-HEADERS/20-21:OUTREACH.webp" alt="2023–2024 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
           <h3 class="tile-title">2020–2021 Outreach</h3>
@@ -264,9 +151,9 @@
         </div>
       </a>
 
-      <!-- 2019–2020 -->
-      <a class="outreach-tile ready reveal d7" href="outreach-coming-soon.html">
-        <img class="tile-photo" src="OUTREACH-HEADERS/19-20:OUTREACH.webp" alt="2019–2020 Outreach" onerror="this.style.display='none'">
+      <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
+        <span class="badge badge-past">Previous Season</span>
+        <img class="tile-photo" src="OUTREACH-HEADERS/19-20:OUTREACH.webp" alt="2023–2024 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
           <h3 class="tile-title">2019–2020 Outreach</h3>
@@ -274,56 +161,49 @@
         </div>
       </a>
 
-      <!-- 2018–2019 · COMING SOON -->
-      <div class="outreach-tile coming-soon reveal d8">
-        <span class="badge badge-soon">Coming Soon</span>
-        <div class="tile-placeholder"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-        <div class="tile-gradient"></div>
-        <div class="tile-body"><h3 class="tile-title">2018–2019 Outreach</h3></div>
-      </div>
+      <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
+    <span class="badge badge-past">Previous Season</span>
+    <div class="tile-placeholder">
+      <!-- Camera Icon SVG -->
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+    </div>
+    <div class="tile-gradient"></div>
+    <div class="tile-body">
+      <h3 class="tile-title">2018–2019 Outreach</h3>
+      <span class="tile-arrow">View Details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </div>
+  </a>
 
-      <!-- 2017–2018 · COMING SOON -->
-      <div class="outreach-tile coming-soon reveal d9">
-        <span class="badge badge-soon">Coming Soon</span>
-        <div class="tile-placeholder"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-        <div class="tile-gradient"></div>
-        <div class="tile-body"><h3 class="tile-title">2017–2018 Outreach</h3></div>
-      </div>
+  <!-- 2017–2018 Outreach with Camera Icon -->
+  <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
+    <span class="badge badge-past">Previous Season</span>
+    <div class="tile-placeholder">
+      <!-- Camera Icon SVG -->
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+    </div>
+    <div class="tile-gradient"></div>
+    <div class="tile-body">
+      <h3 class="tile-title">2017–2018 Outreach</h3>
+      <span class="tile-arrow">View Details <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </div>
+  </a>
 
     </div>
   </main>
 
-  <div class="section-divider"></div>
+  <div id="footer-mount"></div>
 
-  <footer>
-    <div class="footer-logo">QuadX 6299</div>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="first.html">What is FIRST?</a>
-      <a href="robots.html">Robots</a>
-      <a href="outreach.html">Outreach</a>
-      <a href="team.html">Team</a>
-      <a href="docs.html">Documents</a>
-      <a href="momentum.html">Momentum</a>
-    </div>
-    <div class="social-links">
-      <a href="https://instagram.com/YOUR_HANDLE" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-      </a>
-      <a href="https://youtube.com/@YOUR_CHANNEL" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
-        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      </a>
-      <a href="https://x.com/YOUR_HANDLE" class="social-link" target="_blank" rel="noopener" aria-label="X / Twitter">
-        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://linkedin.com/company/YOUR_PAGE" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      </a>
-    </div>
-  </footer>
-
-  <script>document.addEventListener('DOMContentLoaded', () => renderNav('outreach'));</script>
   <script>
+    function initializeComponents() {
+      if (typeof renderNav === 'function' && typeof renderFooter === 'function') {
+        renderNav('outreach');
+        renderFooter();
+      } else {
+        setTimeout(initializeComponents, 100);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', initializeComponents);
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -332,9 +212,7 @@
         }
       });
     }, { threshold: 0.1 });
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

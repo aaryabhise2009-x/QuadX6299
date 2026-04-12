@@ -1138,3 +1138,9 @@ nav {
     padding-top: 75px !important; 
 }
 
+.page-title {
+  background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
