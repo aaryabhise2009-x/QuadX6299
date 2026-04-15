@@ -55,126 +55,6 @@
 
     main { padding-top: var(--nav-h); }
 
-    #top-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      z-index: 9999;
-    }
-
-    #top-nav a.logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    #top-nav a.logo img { height: 30px; width: auto; }
-
-    #top-nav a.logo span {
-      color: #fff;
-      font-family: var(--font-primary);
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    #top-nav .links {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-
-    #top-nav .links a {
-      color: rgba(255,255,255,0.78);
-      font-family: var(--font-primary);
-      font-weight: 700;
-      font-size: 0.85rem;
-      padding: 6px 11px;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s;
-      letter-spacing: 0.4px;
-    }
-
-    #top-nav .links a:hover { color: var(--gold2); }
-    #top-nav .links a.active { color: var(--gold2); border-bottom: 2px solid var(--gold); }
-
-    /* ── HAMBURGER BUTTON ── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 6px;
-      z-index: 10001;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* ── MOBILE MENU ── */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: var(--nav-h);
-      left: 0; right: 0;
-      background: rgba(0, 0, 0, 0.96);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
-      border-bottom: 1px solid rgba(212,175,55,0.18);
-      flex-direction: column;
-      padding: 8px 0 18px;
-      z-index: 9998;
-      opacity: 0;
-      transform: translateY(-8px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      pointer-events: none;
-    }
-
-    .mobile-menu.open {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
-
-    .mobile-menu a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      font-family: var(--font-primary);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 13px 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      transition: color 0.2s, background 0.2s;
-      letter-spacing: 0.5px;
-    }
-
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:hover, .mobile-menu a.active { color: var(--gold2); background: rgba(212,175,55,0.05); }
-
     /* ── SCROLL REVEAL ── */
     @keyframes fadeSlideUp {
       from { opacity: 0; transform: translateY(32px); }
@@ -245,22 +125,38 @@
     }
 
     .stat-box {
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-top-color: rgba(212,175,55,0.2);
-      border-radius: 16px;
-      padding: 24px 20px;
-      text-align: center;
-      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-    }
+  /* 1. More transparent base with heavier blur */
+  background: rgba(255, 255, 255, 0.03); 
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  
+  /* 2. Multi-layered border for a "glass thickness" effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.4); /* Bright top edge */
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  
+  border-radius: 20px; /* Slightly rounder for a liquid feel */
+  padding: 24px 20px;
+  text-align: center;
+  
+  /* 3. Outer glow and Inner reflection */
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.05); 
+    
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother "liquid" motion */
+}
 
-    .stat-box:hover {
-      transform: translateY(-4px);
-      border-color: rgba(212,175,55,0.4);
-      background: rgba(212,175,55,0.06);
-    }
+.stat-box:hover {
+  transform: translateY(-8px) scale(1.02); /* Pop out effect */
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.5); /* Gold tint on hover */
+  
+  /* 4. Increase the "glow" on hover */
+  box-shadow: 
+    0 15px 45px 0 rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(212, 175, 55, 0.15); 
+}
 
     .stat-val {
       font-family: var(--font-primary);
@@ -322,38 +218,61 @@
 
     /* ── GLASS CARDS ── */
     .glass-card {
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 40px;
-      width: 100%;
-      max-width: 1000px;
-      margin-bottom: 22px;
-      transition: border-color 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+  /* 1. Reduce saturation and blur to stop the orange "bleeding" */
+  backdrop-filter: blur(12px) saturate(110%);
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
 
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, transparent 60%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+  /* 2. Use a cooler, more opaque base to "block" the background color */
+  background: rgba(255, 255, 255, 0.05); 
+  
+  /* 3. Keep the premium borders but soften the top highlight */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 22px;
+  position: relative;
+  overflow: hidden;
 
-    .glass-card:hover {
-      border-color: rgba(212,175,55,0.35);
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.09);
-    }
+  /* 4. Deep shadow to separate the card from the dark background */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 
-    .glass-card:hover::before { opacity: 1; }
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              background 0.4s ease, 
+              box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+  /* Slight increase in opacity on hover to make it feel more "solid" */
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  border-color: rgba(212, 175, 55, 0.3); /* Subtle gold hint only on hover */
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* 5. Subtle "Sheen" instead of just a flat gradient */
+  background: linear-gradient(
+    110deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0) 30%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
+
+.glass-card:hover::before { 
+  opacity: 1; 
+}
 
     /* ── CARD LAYOUT ── */
     .card-layout {
@@ -410,16 +329,32 @@
     .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 
     .tag {
-      background: rgba(212,175,55,0.12);
-      border: 1px solid rgba(212,175,55,0.25);
-      color: var(--gold2);
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+  /* 1. Frosted Glass Base */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  
+  /* 2. Apple's "Rim Light" Border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.3); /* Specular highlight */
+  
+  /* 3. Text Styling (keeping your gold for contrast) */
+  color: var(--gold2);
+  padding: 5px 14px; /* Slightly more breathable */
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  
+  /* 4. Subtle Inner Glow */
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+    
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
     /* ── PHOTO AREA ── */
     .photo-placeholder {
@@ -457,22 +392,44 @@
 
     /* ── BACK LINK ── */
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      padding: 10px 22px;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      border-radius: 8px;
-      color: rgba(255,255,255,0.6);
-      font-family: var(--font-primary);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 10px; /* Slightly wider gap for better legibility */
+  margin-bottom: 12px;
+  padding: 10px 24px;
+  
+  /* 1. Frosted Liquid Base */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  
+  /* 2. Apple's Signature Rim Light */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.35); /* Bright top edge */
+  
+  /* 3. More Modern Rounding */
+  border-radius: 12px; 
+  
+  /* 4. Text Styling */
+  color: rgba(255, 255, 255, 0.85); /* Whiter text for better contrast */
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  /* 5. Depth and Shine */
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+    background 0.3s ease, 
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
 
     .back-link svg {
       width: 13px;
@@ -486,10 +443,16 @@
     }
 
     .back-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
+  /* 6. Active Liquid State */
+  transform: translateX(-5px); /* Moves left to reinforce the "Back" action */
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
 
     .back-link:hover svg { transform: translateX(-3px); }
 
@@ -527,7 +490,7 @@
       </a>
       <span class="section-label reveal d1">Community Impact</span>
       <h1 class="page-title reveal d2">OUTREACH 2025–2026</h1>
-      <p class="page-subtitle reveal d3">Building bridges across borders and industries. Our team is dedicated to inspiring the next generation of engineers and expanding the reach of FIRST robotics.</p>
+      <p class="page-subtitle reveal d3">This season we focused on FIRST recruitment and extensive company tours for the most community imapct we have had in our history.</p>
     </header>
 
     <!-- ── QUICK STATS ── -->
@@ -561,7 +524,7 @@
         <div class="card-content">
           <h3>International Outreach</h3>
           <h2>Rwanda Iniatives</h2>
-          <p>We believe STEM is a universal language. This year, we raised $1,500 to purchase and ship two complete robotics kits to students in Rwanda, providing them with the tools to start their own journey into engineering and problem-solving.</p>
+          <p>We partnered with Team 6210 Stryke to help create 2 teams in Rwanda. We raised $1.5K to buy 2 GoBuilda starter kits to ship to the students there. We also plan to mentor them to prepare them on their robotics journey.</p>
           <div class="tag-cloud">
             <span class="tag">Global Impact</span>
             <span class="tag">$1.5K Raised</span>
@@ -609,9 +572,9 @@
     <div class="glass-card reveal">
       <div class="card-layout">
         <div class="card-content">
-          <h3>Strategic Partnerships</h3>
-          <h2>Emerson STEM & Bot Drive</h2>
-          <p>We participated in Emerson's premier STEM event, showcasing our robot to industry families. Additionally, we took part in an event hosted by <strong>Team 12596</strong>, where local orphans were given the opportunity to drive our competition robot, bridging the gap between high-level technology and community joy.</p>
+          <h3>Community Impact</h3>
+          <h2>Emerson STEM & Christmas Clash</h2>
+          <p>We participated in Emerson's STEM day to teach students about circuits and volunteer with running the event. We participating in Team 12596 Copperhead's Christmas Clash to outreach to orphans in our local area, show our faciltiies, and let them drive our robot.</p>
           <div class="tag-cloud">
             <span class="tag">Industry Demo</span>
             <span class="tag">Team 12596 Collab</span>
@@ -630,9 +593,9 @@
     <div class="glass-card reveal">
       <div class="card-layout rev">
         <div class="card-content">
-          <h3>Technical Mentorship</h3>
+          <h3>Community Event</h3>
           <h2>7-Hour FLL Scrimmage</h2>
-          <p>We hosted a marathon scrimmage for 3 local FLL teams. By providing a full practice field and peer-mentoring for 7 hours, we helped these younger students refine their autonomous code and project presentations before their qualifiers.</p>
+          <p>We hosted an FLL scrimmage in Vandegrift High School to allow 3 FLL teams to compete against each other and gain expereince in gameplay and judging practice. We ran the whole event inlcuding setup and finding people to volunteer for roles.</p>
           <div class="tag-cloud">
             <span class="tag">FLL Scrimmage</span>
             <span class="tag">7 Hours</span>
@@ -653,7 +616,7 @@
         <div class="card-content">
           <h3>Public Outreach</h3>
           <h2>5 Local STEM Nights</h2>
-          <p>Across 5 separate STEM nights, we reached over 225 people. These events are crucial for early recruitment and spreading the mission of FIRST to elementary and middle school students through interactive demonstrations.</p>
+          <p>Across 5 separate STEM nights, we reached over 225 people. These events are crucial for early recruitment and spreading the mission of FIRST to elementary and middle school students through interactive demonstrations. We let student's drive our robot to drive their interest in robotics.</p>
           <div class="tag-cloud">
             <span class="tag">225+ Engaged</span>
             <span class="tag">5 Events</span>
@@ -673,7 +636,7 @@
         <div class="card-content">
           <h3>Team Growth</h3>
           <h2>Impulse Summer Camp</h2>
-          <p>Our 2-day "Impulse" summer camp attracted 22 aspiring young engineers. We provided hands-on workshops in CAD, mechanical design, and programming, building a pipeline for future robotics talent in our community.</p>
+          <p>Our 2-day "Impulse" summer camp attracted 22 students. We taught students about the design process and had them build and code a FTC style intake in just 2 days.</p>
           <div class="tag-cloud">
             <span class="tag">22 Students</span>
             <span class="tag">2-Day Intensive</span>
@@ -778,6 +741,16 @@
   <script>document.addEventListener('DOMContentLoaded', () => renderNav('outreach'));</script>
 
   <script>
+    function initializeComponents() {
+      if (typeof renderNav === 'function' && typeof renderFooter === 'function') {
+        renderNav('outreach');
+        renderFooter();
+      } else {
+        setTimeout(initializeComponents, 100);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', initializeComponents);
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -786,10 +759,7 @@
         }
       });
     }, { threshold: 0.1 });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 
 </body>

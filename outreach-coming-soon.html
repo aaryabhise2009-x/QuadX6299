@@ -62,24 +62,35 @@
 
     /* ── CENTERED CARD ── */
     .coming-soon-card {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 24px;
-      padding: 70px 60px;
-      max-width: 560px;
-      width: 90%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+  /* Ultra-translucent base with a slight white tint */
+  background: rgba(255, 255, 255, 0.056); 
+  
+  /* The "Liquid" Blur */
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  
+  /* Thin, high-contrast border for that "sharp" glass edge */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* Soft outer shadow + Inner highlight (the secret sauce) */
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 
-      /* Entrance animation */
-      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      opacity: 0;
-    }
+  border-radius: 32px; /* Slightly rounder for the modern iOS look */
+  padding: 70px 60px;
+  max-width: 560px;
+  width: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  /* Entrance animation */
+  animation: cardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 
     @keyframes cardIn {
       from { opacity: 0; transform: translateY(30px) scale(0.97); }
@@ -88,15 +99,33 @@
 
     /* Gold icon */
     .cs-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
-      border: 1px solid rgba(212,175,55,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  
+  /* Semi-transparent gold base */
+  background: rgba(212, 175, 55, 0.15);
+  
+  /* High-performance blur and color pop */
+  backdrop-filter: blur(12px) saturate(200%);
+  -webkit-backdrop-filter: blur(12px) saturate(200%);
+  
+  /* The "Glass Edge" - thin top highlight and subtle bottom border */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* Subtle outer glow + inner bevel effect */
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5), /* Top light catch */
+    inset 0 -1px 20px rgba(212, 175, 55, 0.1); /* Inner gold warmth */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Subtle float animation for a liquid feel */
+}
+
 
     .cs-icon svg {
       width: 28px;
@@ -143,22 +172,50 @@
 
     /* Back button */
     .cs-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding: 12px 30px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      color: #fff;
-      font-family: var(--font-primary);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 12px 30px;
+  
+  /* The "Material" background - bright but translucent */
+  background: rgba(255, 255, 255, 0.12);
+  
+  /* Apple's signature thick blur */
+  backdrop-filter: blur(15px) saturate(160%);
+  -webkit-backdrop-filter: blur(15px) saturate(160%);
+  
+  /* Hairline border for crispness */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px; /* More modern, softer corner than 8px */
+  
+  color: #fff;
+  font-family: var(--font-primary);
+  font-weight: 600; /* Slightly thinner for a cleaner look */
+  font-size: 0.85rem;
+  letter-spacing: 1px; /* Reduced for better legibility */
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  /* Shadows: One for depth, one for an inner "edge" highlight */
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cs-back:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.cs-back:active {
+  transform: translateY(0) scale(0.96);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 
     .cs-back svg {
       width: 14px;
