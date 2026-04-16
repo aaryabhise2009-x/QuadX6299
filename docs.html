@@ -7,7 +7,7 @@
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
   <script src="shared.js"></script>
   <style>
-    @font-face {
+   @font-face {
       font-family: 'Proxima Nova';
       font-weight: 400;
       font-style: normal;
@@ -19,6 +19,7 @@
       font-style: normal;
       src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
     }
+    /* We map 900 to the bold file as well so your heavy titles work */
     @font-face {
       font-family: 'Proxima Nova';
       font-weight: 900;
@@ -28,29 +29,25 @@
 
     :root {
       --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-      --gold:  #D4AF37;
+      --gold: #D4AF37;
       --gold2: #FFD700;
       --nav-h: 55px;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
 
-    html, body {
-      margin: 0; padding: 0;
+    body {
+      margin: 0;
       overflow-x: hidden;
       min-height: 100vh;
       font-family: var(--font-primary);
       color: #fff;
-      background-color: #111;
+      background: #111 url(website-background.webp) no-repeat center center fixed;
+      background-size: cover;
     }
 
-    body {
-      background-image: url(website-background.webp);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
+    /* Restores your global link color without the extra style tag in the body */
+    a { color: white; text-decoration: none; }
 
     main { padding-top: var(--nav-h); }
 
@@ -67,7 +64,6 @@
     .reveal.d4 { animation-delay: 0.30s; }
     .reveal.d5 { animation-delay: 0.38s; }
 
-    /* ── PAGE WRAPPER ── */
     #docs-page {
       padding: 60px 5% 100px;
       display: flex;
@@ -75,11 +71,10 @@
       align-items: center;
     }
 
-    /* ── PAGE HEADER ── */
     .page-header {
       text-align: center;
       margin-bottom: 56px;
-      padding: 40px 0 0;
+      padding-top: 40px;
     }
 
     .section-label {
@@ -93,12 +88,10 @@
     }
 
     .page-title {
-      font-family: var(--font-primary);
       font-weight: 900;
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       margin: 0 0 14px;
       line-height: 1;
-      /* Gold gradient matching index.html */
       background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -113,8 +106,7 @@
       margin: 0 auto;
     }
 
-    /* ── DOCS GRID ── */
-    .docs-grid {
+    .docs-grid, #document-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
@@ -122,63 +114,63 @@
       max-width: 880px;
     }
 
-    /* ── DOC CARD ── */
     .doc-card {
       position: relative;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.11);
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 12px 30px rgba(0, 0, 0, 0.2);
       border-radius: 20px;
       padding: 32px 28px 28px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      text-decoration: none;
       color: #fff;
       overflow: hidden;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.3s ease,
-                  background 0.3s ease,
-                  box-shadow 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .doc-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.8), transparent);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      filter: blur(1px);
+      transition: opacity 0.4s ease;
     }
 
     .doc-card:hover {
-      transform: translateY(-6px) scale(1.015);
-      border-color: rgba(212,175,55,0.4);
-      background: rgba(255,255,255,0.1);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,175,55,0.1);
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(212, 175, 55, 0.5);
+      background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.15);
     }
 
     .doc-card:hover::before { opacity: 1; }
 
-    /* ── CARD ICON ── */
     .doc-icon {
       width: 48px;
       height: 48px;
       border-radius: 12px;
-      background: rgba(212,175,55,0.1);
-      border: 1px solid rgba(212,175,55,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.3s ease, border-color 0.3s ease;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(212, 175, 55, 0.15) 100%);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .doc-card:hover .doc-icon {
-      background: rgba(212,175,55,0.18);
-      border-color: rgba(212,175,55,0.5);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35) 0%, rgba(212, 175, 55, 0.25) 100%);
+      border-color: rgba(212, 175, 55, 0.8);
+      transform: scale(1.05);
+      box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.5), 0 8px 20px rgba(212, 175, 55, 0.2);
     }
 
     .doc-icon svg {
@@ -189,10 +181,14 @@
       stroke-width: 1.7;
       stroke-linecap: round;
       stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
+      transition: transform 0.3s ease;
     }
 
-    /* ── CARD TEXT ── */
-    .doc-info { flex: 1; }
+    .doc-card:hover .doc-icon svg {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+    }
 
     .doc-type {
       font-size: 0.68rem;
@@ -205,10 +201,8 @@
     }
 
     .doc-name {
-      font-family: var(--font-primary);
       font-weight: 900;
       font-size: 1.25rem;
-      color: #fff;
       margin: 0 0 6px;
       line-height: 1.2;
     }
@@ -220,7 +214,6 @@
       margin: 0;
     }
 
-    /* ── CARD FOOTER ── */
     .doc-footer {
       display: flex;
       align-items: center;
@@ -232,16 +225,26 @@
     .doc-format {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
+      gap: 6px;
       border-radius: 6px;
-      padding: 3px 10px;
+      padding: 4px 10px;
       font-size: 0.7rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(10px) saturate(180%);
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0 1px 0.5px rgba(255, 255, 255, 0.4), 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .doc-card:hover .doc-format {
+      border-color: rgba(212, 175, 55, 0.5);
+      background: rgba(212, 175, 55, 0.1);
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     }
 
     .doc-arrow {
@@ -253,7 +256,7 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: rgba(255,255,255,0.3);
-      transition: color 0.2s, gap 0.2s;
+      transition: all 0.2s;
     }
 
     .doc-arrow svg {
@@ -270,8 +273,7 @@
     .doc-card:hover .doc-arrow { color: var(--gold); gap: 8px; }
     .doc-card:hover .doc-arrow svg { transform: translateX(2px); }
 
-    /* ── GOLD DIVIDER ── */
-    .gold-divider {
+    .gold-divider, .section-divider {
       width: 90%;
       max-width: 880px;
       height: 1px;
@@ -280,100 +282,39 @@
       margin: 60px auto 0;
     }
 
-    /* ── JOIN SECTION ── */
-    .join-section {
-      width: 100%;
-      max-width: 880px;
-      margin-top: 56px;
-    }
+    .section-divider { max-width: 1100px; margin: 0 auto; }
 
-    .join-header {
-      text-align: center;
-      margin-bottom: 36px;
-    }
+    
 
-    .join-title {
-      font-family: var(--font-primary);
-      font-weight: 900;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin: 0 0 14px;
-      line-height: 1.05;
-      background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .join-subtitle {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.5);
-      max-width: 480px;
-      line-height: 1.7;
-      margin: 0 auto;
-    }
-
-    .join-form-card {
-      position: relative;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.11);
-      border-radius: 20px;
-      padding: 36px 32px;
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-
-    /* Gold shimmer top edge */
-    .join-form-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.55), transparent);
-    }
-
-    .join-form-card:hover {
-      border-color: rgba(212,175,55,0.3);
-    }
-
-    .join-form-card iframe {
-      display: block;
-      width: 100%;
-      min-height: 480px;
-      border: none;
-      background: transparent;
-    }
-
-    /* ── SECTION DIVIDER ── */
-    .section-divider {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
-    }
-
-    /* ── CONTACT NUDGE ── */
     .contact-nudge {
       margin-top: 64px;
       width: 100%;
       max-width: 880px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 15px 35px rgba(0, 0, 0, 0.25);
+      border-radius: 24px;
       padding: 32px 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
       flex-wrap: wrap;
+      position: relative;
+    }
+
+    .contact-nudge::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.08), transparent 50%);
+      pointer-events: none;
     }
 
     .nudge-text h3 {
-      font-family: var(--font-primary);
       font-weight: 900;
       font-size: 1.1rem;
       margin: 0 0 6px;
@@ -390,43 +331,31 @@
       align-items: center;
       gap: 8px;
       padding: 12px 28px;
-      background: linear-gradient(135deg, #D4AF37, #FFD700);
-      color: #111;
-      font-family: var(--font-primary);
-      font-weight: 900;
+      background: radial-gradient(circle at 30% 0%, rgba(255, 215, 0, 0.4) 0%, rgba(212, 175, 55, 0.2) 100%);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      box-shadow: inset 0 1.5px 1.5px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2), 0 4px 20px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      font-weight: 800;
       font-size: 0.85rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 4px 20px rgba(212,175,55,0.35);
+      border-radius: 8px;
       white-space: nowrap;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .nudge-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(212,175,55,0.5);
+      transform: translateY(-4px) scale(1.02);
+      background: radial-gradient(circle at 30% 0%, rgba(255, 215, 0, 0.5) 0%, rgba(212, 175, 55, 0.3) 100%);
+      border-color: rgba(212, 175, 55, 0.9);
+      box-shadow: inset 0 1.5px 2px rgba(255, 255, 255, 0.6), 0 12px 24px rgba(212, 175, 55, 0.3);
     }
 
-    /* ── FOOTER ── */
-    footer { padding: 50px 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: rgba(0,0,0,0.55); }
-    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
-    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .social-links { display: flex; gap: 14px; }
-    .social-link { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
-    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35); }
-    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+    .flyer-wrap { display: flex; justify-content: center; }
 
-    /* ── FLYER ── */
-    .flyer-wrap {
-      display: flex;
-      justify-content: center;
-    }
-
-    /* Constrains width so 4:5 doesn't get huge on wide screens */
     .flyer-frame {
       width: 100%;
       max-width: 420px;
@@ -436,7 +365,6 @@
       border: 1px solid rgba(212,175,55,0.25);
       box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(212,175,55,0.08);
       background: rgba(255,255,255,0.04);
-      position: relative;
       transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease;
     }
 
@@ -445,23 +373,16 @@
       box-shadow: 0 20px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.22);
     }
 
-    .flyer-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .flyer-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .flyer-placeholder {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 16px;
       color: rgba(255,255,255,0.3);
-      font-family: var(--font-primary);
       font-size: 0.9rem;
       text-align: center;
       padding: 24px;
@@ -469,16 +390,10 @@
       border-radius: 18px;
     }
 
-    .flyer-placeholder svg {
-      width: 48px;
-      height: 48px;
-      opacity: 0.35;
-      stroke: var(--gold);
-    }
+    .flyer-placeholder svg { width: 48px; height: 48px; opacity: 0.35; stroke: var(--gold); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 620px) {
-      .docs-grid { grid-template-columns: 1fr; }
+      .docs-grid, #document-container { grid-template-columns: 1fr; }
       .contact-nudge { flex-direction: column; text-align: center; }
       .flyer-frame { max-width: 320px; }
     }
@@ -497,114 +412,13 @@
     </header>
 
     <!-- ── DOC CARDS ── -->
-    <div class="docs-grid">
 
-      <!-- Sponsorship Packet -->
-      <a class="doc-card reveal d1" href="sponsorship-packet.pdf" target="_blank" rel="noopener">
-        <div class="doc-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
-          </svg>
-        </div>
-        <div class="doc-info">
-          <h2 class="doc-name">Sponsorship Packet</h2>
-          <p class="doc-desc">Learn how your organization can support Team QuadX 6299. Includes sponsorship tiers, team impact data, and branding opportunities.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-format">PDF</span>
-          <span class="doc-arrow">
-            Open
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- Volunteer Guide -->
-      <a class="doc-card reveal d2" href="volunteer.pdf" target="_blank" rel="noopener">
-        <div class="doc-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="doc-info">
-          <h2 class="doc-name">Volunteer Guide</h2>
-          <p class="doc-desc">Everything you need to know about volunteering at FIRST events with QuadX. Includes event roles, expectations, time commitments, and how to sign up.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-format">PDF</span>
-          <span class="doc-arrow">
-            Open
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </div>
-      </a>
-
-      <!-- FTC QuadX Handbook -->
-      <a class="doc-card reveal d3" href="https://ftc-resources.firstinspires.org/file/ftc/game/manual" target="_blank" rel="noopener">
-        <div class="doc-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
-        </div>
-        <div class="doc-info">
-          <h2 class="doc-name">FTC QuadX handbook</h2>
-          <p class="doc-desc">A resource we made to help FTC teams with their season. Includes information about building your robot, team management, and outreach.</p>
-        </div>
-        <div class="doc-footer">
-          <span class="doc-format">PDF</span>
-          <span class="doc-arrow">
-            Open
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </div>
-      </a>
+      <div id="document-container" class="doc-grid"></div>
 
     </div><!-- /docs-grid -->
 
     <!-- ── GOLD DIVIDER ── -->
     <hr class="gold-divider reveal">
-
-    <!-- ── JOIN VIPERBOTS SECTION ── -->
-    <div class="join-section">
-
-      <div class="join-header reveal">
-        <span class="section-label">Get Involved</span>
-        <h2 class="join-title">Want to Join Viperbots?</h2>
-        <style>
-  a { color: white} /* Changes color and removes underline */
-</style>
-
-        <p class="join-subtitle">Join Viperbots by going to <a href="https://viperbots.org">viperbots.org</a> and complete your application</p>
-      </div>
-
-      <!-- 4:5 vertical flyer — replace join-flyer.webp with your actual file -->
-      <div class="flyer-wrap reveal d1">
-        <div class="flyer-frame">
-          <img
-            src="application.webp"
-            alt="Join Viperbots Flyer"
-            class="flyer-img"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <!-- Placeholder shown if image is missing -->
-          <div class="flyer-placeholder" style="display:none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-            </svg>
-            <span>Add your flyer image<br><code style="font-size:0.75rem;opacity:0.6;">join-flyer.webp</code></span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /join-section -->
 
     <!-- ── CONTACT NUDGE ── -->
     <div class="contact-nudge reveal">
@@ -623,6 +437,8 @@
   <div class="section-divider"></div>
 
 <div id="footer-mount"></div>
+
+<script src="docs.js"></script>
 
   <script>
     function initializeComponents() {
