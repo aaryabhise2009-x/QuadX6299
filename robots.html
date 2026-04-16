@@ -8,298 +8,299 @@
   <script src="shared.js"></script>
   <style>
     @font-face {
-      font-family: 'Proxima Nova';
-      font-weight: 400;
-      font-style: normal;
-      src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Proxima Nova';
-      font-weight: 700;
-      font-style: normal;
-      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Proxima Nova';
-      font-weight: 900;
-      font-style: normal;
-      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
-    }
+  font-family: 'Proxima Nova';
+  font-weight: 400;
+  font-style: normal;
+  src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype');
+}
+/* Combined 700 and 900 since they used the same file */
+@font-face {
+  font-family: 'Proxima Nova';
+  font-weight: 700;
+  font-style: normal;
+  src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
+}
 
-    :root {
-      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-      --gold:  #D4AF37;
-      --gold2: #FFD700;
-      --nav-h: 55px;
-    }
+:root {
+  --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
+  --gold: #D4AF37;
+  --gold2: #FFD700;
+  --nav-h: 55px;
+}
 
-    *, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 
-    html, body {
-      margin: 0; padding: 0;
-      overflow-x: hidden;
-      min-height: 100vh;
-      font-family: var(--font-primary);
-      color: #fff;
-      background-color: #111;
-    }
+html, body {
+  margin: 0; padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: var(--font-primary);
+  color: #fff;
+  background-color: #111;
+}
 
-    body {
-      background-image: url(website-background.webp);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
+body {
+  background: url(website-background.webp) no-repeat center fixed;
+  background-size: cover;
+}
 
-    main { padding-top: var(--nav-h); }
+main { padding-top: var(--nav-h); }
 
-    /* ── PAGE WRAPPER ── */
-    #robots-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 110px 5% 100px;
-    }
+#robots-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 110px 5% 100px;
+}
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      text-align: center;
-      margin-bottom: 36px;
-      padding: 0;
-    }
+.page-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
 
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 14px;
-    }
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
 
-    .page-title {
-      font-weight: 900;
-      font-size: clamp(2.4rem, 5vw, 3.4rem);
-      margin: 0 auto 16px;
-      font-family: var(--font-primary);
-      /* Gold gradient matching index.html */
-      background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+.page-title {
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  margin: 0 auto 16px;
+  background: linear-gradient(45deg, #ffd748, #946f00, #ffd748, #946f00, #ffd748);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    /* ── ROBOT SHOWCASE ── */
-    .robot-showcase {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      max-width: 860px;
-    }
+.robot-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 860px;
+}
 
-    /* ── ROBOT TILE ── */
-    .robot-tile {
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px;
-      overflow: hidden;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.3s ease,
-                  background 0.3s ease;
-      position: relative;
-    }
+.robot-tile {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-    .robot-tile::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, transparent 60%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
+.robot-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 
-    .robot-tile:hover {
-      transform: translateY(-5px) scale(1.005);
-      border-color: rgba(212,175,55,0.35);
-      background: rgba(255,255,255,0.08);
-    }
+.robot-tile:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3);
+}
 
-    .robot-tile:hover::before { opacity: 1; }
+.robot-tile:hover::before { opacity: 1; }
 
-    /* current season gets a gold accent */
-    .robot-tile.current {
-      border-color: rgba(212,175,55,0.4);
-      background: rgba(212,175,55,0.06);
-    }
+.robot-tile.current {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.1), 0 10px 30px rgba(212, 175, 55, 0.2);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
 
-    /* ── TILE TEXT ── */
-    .robot-text {
-      padding: 26px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 8px;
-    }
+.robot-text {
+  padding: 26px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
 
-    .robot-season-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
+.robot-season-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
 
-    .robot-name {
-      font-family: var(--font-primary);
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: #fff;
-      margin: 0;
-      line-height: 1.1;
-    }
+.robot-name {
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 0;
+  line-height: 1.1;
+}
 
-    .robot-game {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
+.robot-game {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
 
-    .robot-desc {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.65;
-      margin: 0;
-    }
+.robot-desc {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  margin: 0;
+}
 
-    /* ── TILE IMAGE ── */
-    .robot-image-wrap {
-      position: relative;
-      background: rgba(0,0,0,0.35);
-      border-left: 1px solid rgba(212,175,55,0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      min-height: 180px;
-      padding: 20px;
-      text-align: center;
-    }
+.robot-image-wrap {
+  position: relative;
+  background: rgba(0,0,0,0.35);
+  border-left: 1px solid rgba(212,175,55,0.15);
+  overflow: hidden;
+  /* Height is controlled by the grid-row height of the parent tile */
+  height: 100%; 
+  width: 100%;
+}
 
-    .robot-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease, opacity 0.3s ease;
-      opacity: 0.85;
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
+.robot-image-wrap img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering logic */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% center; /* Adjust this % to frame the robot */
+  z-index: 1;
+  opacity: 0.85;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
 
-    .placeholder-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      color: rgba(255,255,255,0.15);
-      transition: color 0.3s ease, transform 0.3s ease;
-      position: relative;
-      z-index: 2;
-    }
+/* 2. Update the hover state to include BOTH properties */
+.robot-tile:hover .robot-image-wrap img {
+  /* This prevents the jump to the bottom right */
+  transform: translate(-50%, -50%) scale(1.06); 
+  opacity: 1;
+}
 
-    .placeholder-content svg {
-      width: 64px;
-      height: 64px;
-      fill: currentColor;
-    }
 
-    .placeholder-text {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
 
-    .robot-tile:hover .robot-image-wrap img {
-      transform: scale(1.06);
-      opacity: 1;
-    }
+.placeholder-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  color: rgba(255,255,255,0.15);
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
 
-    .robot-tile:hover .placeholder-content {
-      color: var(--gold);
-      transform: translateY(-5px);
-    }
+.placeholder-content svg {
+  width: 64px;
+  height: 64px;
+  fill: currentColor;
+}
 
-    /* ── GOLD DIVIDER ── */
-    .gold-divider {
-      width: 90%;
-      max-width: 860px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
-      border: none;
-      margin: 0 auto;
-    }
+.placeholder-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
 
-    /* ── SCROLL ANIMATIONS ── */
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.robot-tile:hover .robot-image-wrap img {
+  /* You must keep the translate so it stays centered while scaling */
+  transform: translate(-50%, -50%) scale(1.06);
+  opacity: 1;
+}
+.robot-tile:hover .placeholder-content {
+  color: var(--gold);
+  transform: translateY(-5px);
+}
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-    }
+.gold-divider {
+  width: 90%;
+  max-width: 860px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+  margin: 0 auto;
+}
 
-    .reveal.visible {
-      animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-    .reveal.d1 { animation-delay: 0.05s; }
-    .reveal.d2 { animation-delay: 0.12s; }
-    .reveal.d3 { animation-delay: 0.19s; }
-    .reveal.d4 { animation-delay: 0.08s; }
-    .reveal.d5 { animation-delay: 0.14s; }
-    .reveal.d6 { animation-delay: 0.20s; }
-    .reveal.d7 { animation-delay: 0.26s; }
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
 
-    /* Hidden by filter */
-    .robot-tile.hidden {
-      display: none;
-    }
+.reveal.visible {
+  animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 
-    /* ── FOOTER ── */
-    footer { padding: 50px 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: rgba(0,0,0,0.55); }
-    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
-    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .social-links { display: flex; gap: 14px; }
-    .social-link { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
-    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35); }
-    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
-    .section-divider { width: 90%; max-width: 1100px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent); }
+.reveal.d1 { animation-delay: 0.05s; }
+.reveal.d2 { animation-delay: 0.12s; }
+.reveal.d3 { animation-delay: 0.19s; }
+.reveal.d4 { animation-delay: 0.08s; }
+.reveal.d5 { animation-delay: 0.14s; }
+.reveal.d6 { animation-delay: 0.20s; }
+.reveal.d7 { animation-delay: 0.26s; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 700px) {
-      .robot-tile { grid-template-columns: 1fr; }
-      .robot-image-wrap { min-height: 160px; border-left: none; border-top: 1px solid rgba(212,175,55,0.15); order: -1; }
-      .robot-text { padding: 20px; }
-      .robot-name { font-size: 1.3rem; }
-    }
+.robot-tile.hidden { display: none; }
+
+@media (max-width: 700px) {
+  .robot-tile { 
+    grid-template-columns: 1fr; 
+  }
+
+  .robot-image-wrap { 
+    /* Remove the fixed min-height */
+    min-height: unset; 
+    /* Force the container to match the photo's shape */
+    height: auto; 
+    /* This creates a 16:9 box; adjust if your photo is taller */
+    aspect-ratio: 16 / 9; 
+    border-left: none; 
+    border-bottom: 1px solid rgba(212,175,55,0.15); 
+    order: -1; 
+  }
+
+  .robot-image-wrap img {
+    /* On mobile, we want to see the WHOLE wide photo */
+    object-fit: contain; 
+    object-position: center;
+    /* Ensure the scale effect still works while centered */
+    transform: translate(-50%, -50%);
+  }
+
+  .robot-tile:hover .robot-image-wrap img {
+    /* Keeps it centered on hover for mobile too */
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+
+  .robot-text { padding: 20px; }
+  .robot-name { font-size: 1.3rem; }
+}
   </style>
 </head>
 <body>
@@ -321,11 +322,7 @@
           <p class="robot-desc">Our latest robot featured a fast turret to accurately and efficiently shoot game elements from anywhere on the field. Our modular intakes also proved for easy upgrades and maintainence.</p>
         </div>
         <div class="robot-image-wrap">
-          <div class="placeholder-content">
-            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" /></svg>
-            <span class="placeholder-text">Picture Coming Soon</span>
-          </div>
-          <img src="robots/current.webp" alt="2025–2026 Robot" onerror="this.style.display='none'">
+          <img src="25-26.png" alt="2025–2026 Robot" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -353,11 +350,7 @@
           <p class="robot-desc">Info coming soon.</p>
         </div>
         <div class="robot-image-wrap">
-          <div class="placeholder-content">
-            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" /></svg>
-            <span class="placeholder-text">Picture Coming Soon</span>
-          </div>
-          <img src="robots/midas.webp" alt="MIDAS – 2023–2024 Robot" onerror="this.style.display='none'">
+          <img src="23-24.png" alt="MIDAS – 2023–2024 Robot" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -368,11 +361,7 @@
           <span class="robot-game">FTC: POWERPLAY</span>
           <p class="robot-desc">Info coming soon.</p>        </div>
         <div class="robot-image-wrap">
-          <div class="placeholder-content">
-            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" /></svg>
-            <span class="placeholder-text">Picture Coming Soon</span>
-          </div>
-          <img src="robots/anubis.webp" alt="ANUBIS – 2022–2023 Robot" onerror="this.style.display='none'">
+          <img src="22-23.jpg" alt="ANUBIS – 2022–2023 Robot" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -471,13 +460,9 @@
           <span class="robot-season-tag">2015 – 2016</span>
           <h2 class="robot-name">HERMES 2.0</h2>
           <span class="robot-game">FTC: RES-Q</span>
-          <p class="robot-desc">Info coming soon.</p>        </div>
+          <p class="robot-desc">Our robot subsystems included a lift, rotating foam intake, arm, winch, and conveyer.</p>        </div>
         <div class="robot-image-wrap">
-          <div class="placeholder-content">
-            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" /></svg>
-            <span class="placeholder-text">Picture Coming Soon</span>
-          </div>
-          <img src="robots/hermes2.webp" alt="HERMES 2.0 – 2015–2016 Robot" onerror="this.style.display='none'">
+          <img src="15-16.jpg" alt="HERMES 2.0 – 2015–2016 Robot" onerror="this.style.display='none'">
         </div>
       </div>
 
