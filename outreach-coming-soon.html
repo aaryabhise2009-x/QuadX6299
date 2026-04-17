@@ -6,34 +6,10 @@
   <title>Coming Soon – QuadX 6299</title>
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
   <script src="shared.js"></script>
+      <link rel="stylesheet" href="style.css">
   <style>
-    @font-face {
-      font-family: 'Proxima Nova';
-      font-weight: 400;
-      font-style: normal;
-      src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'Proxima Nova';
-      font-weight: 700;
-      font-style: normal;
-      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
-    }
-    @font-face {
-      font-family: 'Proxima Nova';
-      font-weight: 900;
-      font-style: normal;
-      src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
-    }
+    
 
-    :root {
-      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-      --gold:  #D4AF37;
-      --gold2: #FFD700;
-      --nav-h: 55px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
       margin: 0; padding: 0;
@@ -63,21 +39,7 @@
     /* ── CENTERED CARD ── */
     .coming-soon-card {
   /* Ultra-translucent base with a slight white tint */
-  background: rgba(255, 255, 255, 0.056); 
-  
-  /* The "Liquid" Blur */
-  backdrop-filter: blur(30px) saturate(180%);
-  -webkit-backdrop-filter: blur(30px) saturate(180%);
-  
-  /* Thin, high-contrast border for that "sharp" glass edge */
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  
-  /* Soft outer shadow + Inner highlight (the secret sauce) */
-  box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-
-  border-radius: 32px; /* Slightly rounder for the modern iOS look */
+  border-radius: 32px; 
   padding: 70px 60px;
   max-width: 560px;
   width: 90%;
@@ -87,7 +49,7 @@
   align-items: center;
   gap: 24px;
 
-  /* Entrance animation */
+  /* 2. Keep Unique Animation */
   animation: cardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -102,28 +64,15 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  
-  /* Semi-transparent gold base */
-  background: rgba(212, 175, 55, 0.15);
-  
-  /* High-performance blur and color pop */
-  backdrop-filter: blur(12px) saturate(200%);
-  -webkit-backdrop-filter: blur(12px) saturate(200%);
-  
-  /* The "Glass Edge" - thin top highlight and subtle bottom border */
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  
-  /* Subtle outer glow + inner bevel effect */
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5), /* Top light catch */
-    inset 0 -1px 20px rgba(212, 175, 55, 0.1); /* Inner gold warmth */
-
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* 2. Keep ONLY the unique Golden tint properties */
+  background: rgba(212, 175, 55, 0.15);
   
-  /* Subtle float animation for a liquid feel */
+  /* 3. Keep the "Inner Warmth" glow only */
+  box-shadow: inset 0 -1px 20px rgba(212, 175, 55, 0.1);
 }
 
 
@@ -177,32 +126,16 @@
   gap: 8px;
   margin-top: 8px;
   padding: 12px 30px;
+  border-radius: 14px;
   
-  /* The "Material" background - bright but translucent */
-  background: rgba(255, 255, 255, 0.12);
-  
-  /* Apple's signature thick blur */
-  backdrop-filter: blur(15px) saturate(160%);
-  -webkit-backdrop-filter: blur(15px) saturate(160%);
-  
-  /* Hairline border for crispness */
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 14px; /* More modern, softer corner than 8px */
-  
+  /* 2. Keep Typography */
   color: #fff;
   font-family: var(--font-primary);
-  font-weight: 600; /* Slightly thinner for a cleaner look */
+  font-weight: 600;
   font-size: 0.85rem;
-  letter-spacing: 1px; /* Reduced for better legibility */
+  letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
-  
-  /* Shadows: One for depth, one for an inner "edge" highlight */
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cs-back:hover {
@@ -245,9 +178,9 @@
   <div id="nav-mount"></div>
 
   <main>
-    <div class="coming-soon-card">
+    <div class="coming-soon-card glass-effect">
 
-      <div class="cs-icon">
+      <div class="cs-icon glass-effect">
         <svg viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12 6 12 12 16 14"/>
@@ -264,7 +197,7 @@
         We're still putting this page together. Check back soon to see our full outreach recap for this season.
       </p>
 
-      <a href="outreach.html" class="cs-back">
+      <a href="outreach.html" class="cs-back glass-effect">
         <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Back to Outreach
       </a>

@@ -175,12 +175,12 @@ function renderHistory() {
   if (!container) return; // Error prevention if ID is wrong
 
   container.innerHTML = historyData.map((item, index) => `
-    <div class="history-item reveal d${index + 1}">
+    <div class="history-item glass-effect reveal d${index + 1}">
       <div class="year-header" onclick="toggleAccordion(this.parentElement)">
         <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
         <span class="year-text">${item.year}</span>
         ${item.isWorlds ? `
-          <span class="worlds-badge">
+          <span class="worlds-badge glass-effect">
             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg>
             Worlds
           </span>` : ''}
@@ -195,7 +195,7 @@ function renderHistory() {
                 <div class="event-name">${event.name}</div>
                 <div class="award-pills">
                   ${event.awards.map(award => `
-                    <span class="award-pill ${award.isFirst ? 'first' : ''}" 
+                    <span class="award-pill glass-effect ${award.isFirst ? 'first' : ''}" 
                           style="${award.isUrgent ? 'border-color:rgba(239,68,68,0.4); color:rgba(252,165,165,0.9);' : ''}">
                       ${award.place ? `<span class="place">${award.place}</span>` : ''} ${award.title}
                     </span>`).join('')}

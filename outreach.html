@@ -6,78 +6,159 @@
   <title>Outreach – QuadX 6299</title>
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
   <script src="shared.js"></script>
+      <link rel="stylesheet" href="style.css">
   <style>
-    @font-face { font-family: 'Proxima Nova'; font-weight: 400; src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype'); }
-    @font-face { font-family: 'Proxima Nova'; font-weight: 700; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
-    @font-face { font-family: 'Proxima Nova'; font-weight: 900; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
+    /* --- ROOT & GLOBAL --- */
 
-    :root {
-      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-      --gold: #D4AF37;
-      --gold2: #FFD700;
-      --nav-h: 70px;
-    }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; overflow-x: hidden; min-height: 100vh; font-family: var(--font-primary); color: #fff; background-color: #111; }
-    body { background-image: url(website-background.webp); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+html, body { 
+  margin: 0; padding: 0; 
+  overflow-x: hidden; 
+  min-height: 100vh; 
+  font-family: var(--font-primary); 
+  color: #fff; 
+  background-color: #111; 
+}
 
-    #outreach-page {
-      min-height: 100vh;
-      padding: var(--nav-h) 5% 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+body { 
+  background-image: url(website-background.webp); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+}
 
-    .page-header { text-align: center; margin-bottom: 40px; padding: 40px 0 0; width: 100%; }
-    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 12px; }
-    .page-title {
-      font-weight: 900; font-size: clamp(2.2rem, 8vw, 3.4rem); margin: 0 auto 16px;
-      background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .page-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.6; margin: 0 auto; padding: 0 10px; }
+/* --- LAYOUT --- */
+#outreach-page {
+  min-height: 100vh;
+  padding: var(--nav-h) 5% 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    .outreach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1020px; }
-    .outreach-tile {
-      position: relative; display: block; height: 240px; border-radius: 18px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); backdrop-filter: blur(14px);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease;
-      text-decoration: none;
-    }
+.page-header { text-align: center; margin-bottom: 40px; padding: 40px 0 0; width: 100%; }
+.section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 12px; }
+.page-title {
+  font-weight: 900; font-size: clamp(2.2rem, 8vw, 3.4rem); margin: 0 auto 16px;
+  background: linear-gradient(45deg, #ffd748, #946f00, #ffd748, #946f00, #ffd748);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.page-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.6; margin: 0 auto; padding: 0 10px; }
+
+/* --- GRID --- */
+.outreach-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  width: 100%; 
+  max-width: 1020px; 
+}
+
+/* --- TILE CORE --- */
+.outreach-tile {
+  position: relative !important;
+  display: block !important;
+  height: 240px;
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  /* Kills any padding that would push an absolute image inward */
+  padding: 0 !important; 
+  background-color: #111; 
+}
+
+/* --- IMAGE FORCE-FILL --- */
+.tile-photo {
+  /* 1. Force Absolute Position */
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  
+  /* 2. Force Fill with 'Cover' */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; 
+  object-position: center !important;
+  
+  /* 3. Reset all possible constraints */
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  
+  /* 4. Layering */
+  z-index: 0;
+  display: block !important; /* Overrides the 'none' from onerror if it misfires */
+  opacity: 1;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Updated Hover to handle the 1.1x zoom correctly with the negative inset */
+.outreach-tile:hover .tile-photo {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
 
 .tile-placeholder {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.1); z-index: 0; transition: 0.5s;
+  background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.1); z-index: 0;
 }
 .tile-placeholder svg { width: 60px; height: 60px; fill: currentColor; }
 
+/* --- OVERLAYS & CONTENT --- */
+.tile-gradient {
+  position: absolute;
+  inset: 0;
+  /* Change from horizontal to vertical so text is readable but image shows */
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.tile-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px 18px; z-index: 2; }
+.tile-title { font-weight: 900; font-size: 1rem; color: #fff; margin: 0 0 4px; }
+.tile-arrow { 
+  display: inline-flex; align-items: center; gap: 6px; 
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 1.2px; 
+  text-transform: uppercase; color: rgba(255,255,255,0.4); 
+  transition: 0.3s ease; 
+}
+.tile-arrow svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2.5; }
 
-    .tile-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.78; transition: 0.5s; z-index: 0; }
-    .tile-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,0.85) 100%); z-index: 1; }
-    .tile-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px 18px; z-index: 2; }
-    .tile-title { font-weight: 900; font-size: 1rem; color: #fff; margin: 0 0 4px; }
-    .tile-arrow { display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.4); transition: 0.2s; }
-    .tile-arrow svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+/* --- BADGES --- */
+.badge { position: absolute; top: 12px; right: 12px; z-index: 3; border-radius: 100px; padding: 4px 10px; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; }
+.badge-current { background: linear-gradient(135deg, #D4AF37, #FFD700); color: #111; }
+.badge-past {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
 
-    .badge { position: absolute; top: 12px; right: 12px; z-index: 3; border-radius: 100px; padding: 4px 10px; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; }
-    .badge-current { background: linear-gradient(135deg, #D4AF37, #FFD700); color: #111; }
-    .badge-past { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); }
+/* --- HOVER EFFECTS --- */
+.outreach-tile:hover { transform: translateY(-6px) scale(1.015); border-color: rgba(212,175,55,0.5); }
+.outreach-tile:hover .tile-photo { transform: scale(1.1); opacity: 0.8; }
+.outreach-tile:hover .tile-arrow { color: var(--gold); gap: 10px; }
 
-    .outreach-tile:hover { transform: translateY(-6px) scale(1.015); border-color: rgba(212,175,55,0.5); }
-    .outreach-tile:hover .tile-photo { transform: scale(1.07); opacity: 1; }
-    .outreach-tile:hover .tile-arrow { color: var(--gold); gap: 10px; }
+/* --- ANIMATIONS --- */
+@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(32px); }
+.reveal.visible { animation: fadeSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.reveal.d1 { animation-delay: 0.05s; }
+.reveal.d2 { animation-delay: 0.10s; }
+.reveal.d3 { animation-delay: 0.15s; }
 
-    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(32px); }
-    .reveal.visible { animation: fadeSlideUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-    .reveal.d1 { animation-delay: 0.05s; }
-    .reveal.d2 { animation-delay: 0.10s; }
-    .reveal.d3 { animation-delay: 0.15s; }
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) { .outreach-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+@media (max-width: 580px) { .outreach-grid { grid-template-columns: 1fr; gap: 16px; } }
 
-    @media (max-width: 900px) { .outreach-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
-    @media (max-width: 580px) { .outreach-grid { grid-template-columns: 1fr; gap: 16px; } }
   </style>
 </head>
 <body>
@@ -93,7 +174,7 @@
     <div class="outreach-grid">
       <a class="outreach-tile reveal d1" href="outreach2526.html">
         <span class="badge badge-current">Current Season</span>
-        <img class="tile-photo" src="OUTREACH-HEADERS/25-26:OUTREACH.webp" alt="2025–2026 Outreach" onerror="this.style.display='none'">
+        <img class="tile-photo" src="OUTREACH-HEADERS/25-26:OUTREACH.jpg" alt="2025–2026 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
           <h3 class="tile-title">2025–2026 Outreach</h3>
@@ -101,9 +182,9 @@
         </div>
       </a>
 
-      <a class="outreach-tile reveal d2" href="outreach2425.html">
+      <a class="outreach-tile reveal d2" href="OUTREACH PAGES/">
         <span class="badge badge-past">Previous Season</span>
-        <img class="tile-photo" src="OUTREACH-HEADERS/24-25:OUTREACH.webp" alt="2024–2025 Outreach" onerror="this.style.display='none'">
+        <img class="tile-photo" src="OUTREACH-HEADERS/24-25:OUTREACH.jpg" alt="2024–2025 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>
         <div class="tile-body">
           <h3 class="tile-title">2024–2025 Outreach</h3>
@@ -111,7 +192,7 @@
         </div>
       </a>
 
-      <a class="outreach-tile reveal d3" href="outreach2324.html">
+      <a class="outreach-tile reveal d3" href="outreach-coming-soon.html">
         <span class="badge badge-past">Previous Season</span>
         <img class="tile-photo" src="OUTREACH-HEADERS/23-24:OUTREACH.webp" alt="2023–2024 Outreach" onerror="this.style.display='none'">
         <div class="tile-gradient"></div>

@@ -38,7 +38,7 @@ function renderPrograms() {
   const container = document.getElementById('programs-container');
   
   container.innerHTML = programs.map((prog, index) => `
-    <div class="glass-card reveal delay-${index}">
+    <div class="glass-card glass-effect reveal delay-${index}">
       <div class="flex-row ${prog.reverse ? 'reverse' : ''}">
         <div class="visual">
           <img src="${prog.image}" alt="${prog.id.toUpperCase()} Logo">
@@ -48,7 +48,7 @@ function renderPrograms() {
           <h2>${prog.title}</h2>
           ${prog.subtitle ? `<h3>${prog.subtitle}</h3>` : ''}
           <p>${prog.description}</p>
-          <a href="${prog.link}" class="program-btn ${prog.btnClass}" target="_blank" rel="noopener">
+          <a href="${prog.link}" class="program-btn glass-effect ${prog.btnClass}" target="_blank" rel="noopener">
             Visit ${prog.id.toUpperCase()} Website
           </a>
         </div>

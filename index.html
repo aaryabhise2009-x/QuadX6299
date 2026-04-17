@@ -6,19 +6,10 @@
   <meta property="og:image" content="GOLD-Logo.webp" />
   <title>Team QuadX 6299</title>
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
+<link rel="stylesheet" href="style.css">
   <style>
-    @font-face { font-family: 'Proxima Nova'; font-weight: 400; src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype'); }
-    @font-face { font-family: 'Proxima Nova'; font-weight: 700; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
-    @font-face { font-family: 'Proxima Nova'; font-weight: 900; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
 
-    :root {
-      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-      --gold:  #D4AF37;
-      --gold2: #FFD700;
-      --nav-h: 55px;
-    }
 
-    *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
       margin: 0; padding: 0;
@@ -54,7 +45,7 @@
 
     /* ── GOLD GRADIENT TEXT ── */
     .gold-gradient {
-      background: linear-gradient(90deg, #ffd748 0%, #D4AF37 40%, #FFD700 70%, #b8860b 100%);
+      background: linear-gradient(45deg, #ffd748, #946f00, #ffd748, #946f00, #ffd748);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -104,57 +95,7 @@
       -webkit-mask-image: linear-gradient(to bottom, black 0%, black 20%, transparent 75%);
     }
 
-    /* ── STATS STRIP ── */
-    .stats-row {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 100%;
-      max-width: 860px;
-      padding: 0 20px;
-      margin-top: 16px;
-      margin-bottom: 4px;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-top-color: rgba(212,175,55,0.28);
-      border-radius: 14px;
-      padding: 18px 24px;
-      text-align: center;
-      flex: 1;
-      min-width: 120px;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(212,175,55,0.45);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-
-    .stat-number {
-      font-size: 1.9rem;
-      font-weight: 900;
-      background: linear-gradient(90deg, #ffd748, #D4AF37);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 5px;
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-    }
+    
 
     /* ── NAV BUTTON GROUP ── */
     .home-button-group {
@@ -247,6 +188,7 @@
 
     .about-section h2 {
       font-size: clamp(2rem, 4vw, 3rem);
+      color: rgb(255, 255, 255);
       font-weight: 900;
       margin: 0 0 24px;
       max-width: 700px;
@@ -335,6 +277,7 @@
       line-height: 1.1;
       margin: 0 0 20px;
       max-width: 700px;
+      color: white;
     }
 
     .support-subtext {
@@ -353,93 +296,105 @@
     }
 
     .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 34px;
-      background: linear-gradient(135deg, #D4AF37, #FFD700);
-      color: #111;
-      font-family: var(--font-primary);
-      font-weight: 900;
-      font-size: 0.95rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 4px 24px rgba(212,175,55,0.35);
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 34px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
 
-    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(212,175,55,0.55); }
+  /* 1. Background: Kept the gold tint but reduced opacity for the "High Refraction" look */
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(255, 215, 0, 0.05));
+  
+  /* 2. High Refraction (VisionOS Style) */
+  backdrop-filter: blur(40px) saturate(210%) brightness(110%);
+  -webkit-backdrop-filter: blur(40px) saturate(210%) brightness(110%);
+  
+  /* 3. Gold Specular Edges (Adapted from glass CSS) */
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.45); /* White highlight on top edge */
+  border-left: 1px solid rgba(212, 175, 55, 0.35); /* Gold highlight on left edge */
+  
+  /* 4. Deep Shadows */
+  box-shadow: 
+    0 15px 35px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.02); 
+    
+  /* 5. Logic & Performance */
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.6), rgba(255, 215, 0, 0.2));
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    0 8px 32px rgba(212, 175, 55, 0.3);
+}
+
 
     .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 34px;
-      border: 2px solid rgba(255,255,255,0.25);
-      color: #fff;
-      font-family: var(--font-primary);
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 34px;
+  color: #fff;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 6px;
 
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+  /* 1. High Refraction Surface */
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(40px) saturate(210%) brightness(110%);
+  -webkit-backdrop-filter: blur(40px) saturate(210%) brightness(110%);
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 50px 40px 36px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-      background: rgba(0,0,0,0.55);
-    }
+  /* 2. Sharp Specular Edges */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.45); 
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  
+  /* 3. Deep Shadows & Highlights */
+  box-shadow: 
+    0 15px 35px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.02); 
+    
+  /* 4. Smooth Logic & Performance */
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
 
-    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-
-    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--gold); }
-
-    .social-links { display: flex; gap: 14px; }
-
-    .social-link {
-      width: 42px; height: 42px;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      transition: border-color 0.25s, color 0.25s, transform 0.25s;
-    }
-
-    .social-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35);
-    }
-
-    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+.btn-outline:hover {
+  /* 4. Shift to "Gold Glass" on hover */
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.1); 
+  color: var(--gold);
+  transform: translateY(-3px);
+  
+  /* 5. Add a glow that matches the gold */
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    0 8px 20px rgba(212, 175, 55, 0.2);
+}
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -510,7 +465,7 @@
   <!-- ── ABOUT ── -->
   <section class="about-section">
     <p class="section-label reveal">Who We Are</p>
-    <h2 class="reveal d1"><span class="gold-gradient">About Team QuadX 6299</span></h2>
+    <h2 class="reveal d1">About Team QuadX 6299</h2>
     <p class="reveal d2">
       We are Viperbots Team QuadX 6299 from Vandegrift High School in Austin Texas. We compete in the FIRST Tech Challenge and create robots yearly. We are a student-led team that strives to push the boundaries of innovation and learn as much as possible. We also do outreach to interact with the engineering community. This involves participating in company tours and hosting our own events to teach the younger generation.
     </p>
@@ -521,27 +476,27 @@
   <!-- ── MARQUEE GALLERY ── -->
   <section class="gallery-section">
     <div class="marquee-track">
-      <div class="photo"><img src="1.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="2.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="3.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="4.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="5.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="6.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="7.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="8.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="9.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="10.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/1.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/2.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/3.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/4.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/5.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/6.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/7.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/8.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/9.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/10.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
       <!-- Duplicate for seamless loop -->
-      <div class="photo"><img src="1.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="2.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="3.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="4.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="5.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="6.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="7.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="8.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="9.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
-      <div class="photo"><img src="10.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/1.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/2.webp"       alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/3.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/4.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/5.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/6.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/6.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/8.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/9.webp"  alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
+      <div class="photo"><img src="CAROUSEL/10.webp" alt="" onerror="this.parentElement.style.background='rgba(212,175,55,0.1)'"></div>
     </div>
   </section>
 
@@ -550,14 +505,14 @@
   <!-- ── SUPPORT ── -->
   <section class="support-section">
     <p class="support-label reveal">Get Involved</p>
-    <h2 class="support-heading reveal d1"><span class="gold-gradient">Sponsor our Team</span></h2>
+    <h2 class="support-heading reveal d1">Sponsor our Team</h2>
     <p class="support-subtext reveal d2">Team QuadX 6299 strives to create high level robots and create outreach that can impact the community around us. Your support can help us achieve these things!</p>
     <div class="support-buttons reveal d3">
-      <a href="YOUR_SPONSORSHIP_PACKET_LINK_HERE" class="btn-gold" target="_blank" rel="noopener">
+      <a href="sponsorship-packet.pdf" class="btn-gold glass-effect" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Sponsorship Packet
       </a>
-      <a href="mailto:quadx6299@gmail.com" class="btn-outline">
+      <a href="mailto:quadx6299@gmail.com" class="btn-outline glass-effect">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Contact Us
       </a>

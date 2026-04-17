@@ -6,29 +6,9 @@
   <title>Robots – QuadX 6299</title>
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
   <script src="shared.js"></script>
+      <link rel="stylesheet" href="style.css">
   <style>
-    @font-face {
-  font-family: 'Proxima Nova';
-  font-weight: 400;
-  font-style: normal;
-  src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype');
-}
-/* Combined 700 and 900 since they used the same file */
-@font-face {
-  font-family: 'Proxima Nova';
-  font-weight: 700;
-  font-style: normal;
-  src: url('Proxima-Nova/proximanova_bold.otf') format('opentype');
-}
 
-:root {
-  --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-  --gold: #D4AF37;
-  --gold2: #FFD700;
-  --nav-h: 55px;
-}
-
-*, *::before, *::after { box-sizing: border-box; }
 
 html, body {
   margin: 0; padding: 0;
@@ -45,6 +25,8 @@ body {
 }
 
 main { padding-top: var(--nav-h); }
+
+/* --- CLEANED CSS --- */
 
 #robots-page {
   display: flex;
@@ -89,15 +71,8 @@ main { padding-top: var(--nav-h); }
 .robot-tile {
   display: grid;
   grid-template-columns: 1fr 220px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.2);
   border-radius: 18px;
   overflow: hidden;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .robot-tile::before {
@@ -121,11 +96,13 @@ main { padding-top: var(--nav-h); }
 .robot-tile:hover::before { opacity: 1; }
 
 .robot-tile.current {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+  
+  /* 2. Keep the specific Gold border color */
   border-color: rgba(212, 175, 55, 0.6);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.1), 0 10px 30px rgba(212, 175, 55, 0.2);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+
+  /* 3. Keep ONLY the extra golden glow (remove the inset specular highlights) */
+  box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.1), 0 10px 30px rgba(212, 175, 55, 0.2);
 }
 
 .robot-text {
@@ -172,7 +149,6 @@ main { padding-top: var(--nav-h); }
   background: rgba(0,0,0,0.35);
   border-left: 1px solid rgba(212,175,55,0.15);
   overflow: hidden;
-  /* Height is controlled by the grid-row height of the parent tile */
   height: 100%; 
   width: 100%;
 }
@@ -181,24 +157,22 @@ main { padding-top: var(--nav-h); }
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centering logic */
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 70% center; /* Adjust this % to frame the robot */
+  object-position: 70% center;
   z-index: 1;
   opacity: 0.85;
   transition: transform 0.5s ease, opacity 0.3s ease;
+  will-change: transform;
 }
 
-/* 2. Update the hover state to include BOTH properties */
+/* Consolidated Hover logic */
 .robot-tile:hover .robot-image-wrap img {
-  /* This prevents the jump to the bottom right */
   transform: translate(-50%, -50%) scale(1.06); 
   opacity: 1;
 }
-
-
 
 .placeholder-content {
   display: flex;
@@ -226,11 +200,6 @@ main { padding-top: var(--nav-h); }
   text-transform: uppercase;
 }
 
-.robot-tile:hover .robot-image-wrap img {
-  /* You must keep the translate so it stays centered while scaling */
-  transform: translate(-50%, -50%) scale(1.06);
-  opacity: 1;
-}
 .robot-tile:hover .placeholder-content {
   color: var(--gold);
   transform: translateY(-5px);
@@ -258,27 +227,22 @@ main { padding-top: var(--nav-h); }
   animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* Kept delay classes as they are functional */
 .reveal.d1 { animation-delay: 0.05s; }
-.reveal.d2 { animation-delay: 0.12s; }
-.reveal.d3 { animation-delay: 0.19s; }
-.reveal.d4 { animation-delay: 0.08s; }
-.reveal.d5 { animation-delay: 0.14s; }
-.reveal.d6 { animation-delay: 0.20s; }
-.reveal.d7 { animation-delay: 0.26s; }
+.reveal.d2 { animation-delay: 0.1s; }
+.reveal.d3 { animation-delay: 0.15s; }
+.reveal.d4 { animation-delay: 0.2s; }
+.reveal.d5 { animation-delay: 0.25s; }
+.reveal.d6 { animation-delay: 0.3s; }
+.reveal.d7 { animation-delay: 0.35s; }
 
 .robot-tile.hidden { display: none; }
 
 @media (max-width: 700px) {
-  .robot-tile { 
-    grid-template-columns: 1fr; 
-  }
+  .robot-tile { grid-template-columns: 1fr; }
 
   .robot-image-wrap { 
-    /* Remove the fixed min-height */
-    min-height: unset; 
-    /* Force the container to match the photo's shape */
     height: auto; 
-    /* This creates a 16:9 box; adjust if your photo is taller */
     aspect-ratio: 16 / 9; 
     border-left: none; 
     border-bottom: 1px solid rgba(212,175,55,0.15); 
@@ -286,21 +250,14 @@ main { padding-top: var(--nav-h); }
   }
 
   .robot-image-wrap img {
-    /* On mobile, we want to see the WHOLE wide photo */
     object-fit: contain; 
     object-position: center;
-    /* Ensure the scale effect still works while centered */
-    transform: translate(-50%, -50%);
-  }
-
-  .robot-tile:hover .robot-image-wrap img {
-    /* Keeps it centered on hover for mobile too */
-    transform: translate(-50%, -50%) scale(1.06);
   }
 
   .robot-text { padding: 20px; }
   .robot-name { font-size: 1.3rem; }
 }
+
   </style>
 </head>
 <body>
@@ -314,7 +271,7 @@ main { padding-top: var(--nav-h); }
 
     <div class="robot-showcase">
 
-      <div class="robot-tile current reveal" data-tags="recent">
+      <div class="robot-tile glass-effect current reveal" data-tags="recent">
         <div class="robot-text">
           <span class="robot-season-tag">2025 – 2026</span>
           <h2 class="robot-name">CYPHER</h2>
@@ -326,7 +283,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d1" data-tags="recent award">
+      <div class="robot-tile glass-effect reveal d1" data-tags="recent award">
         <div class="robot-text">
           <span class="robot-season-tag">2024 – 2025</span>
           <h2 class="robot-name">ATLAS</h2>
@@ -342,7 +299,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d2" data-tags="recent">
+      <div class="robot-tile glass-effect reveal d2" data-tags="recent">
         <div class="robot-text">
           <span class="robot-season-tag">2023 – 2024</span>
           <h2 class="robot-name">MIDAS</h2>
@@ -354,7 +311,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d3" data-tags="recent award">
+      <div class="robot-tile glass-effect reveal d3" data-tags="recent award">
         <div class="robot-text">
           <span class="robot-season-tag">2022 – 2023</span>
           <h2 class="robot-name">ANUBIS</h2>
@@ -365,7 +322,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d4" data-tags="">
+      <div class="robot-tile glass-effect reveal d4" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2021 – 2022</span>
           <h2 class="robot-name">HERCULES</h2>
@@ -380,7 +337,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d5" data-tags="">
+      <div class="robot-tile glass-effect reveal d5" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2020 – 2021</span>
           <h2 class="robot-name">N/A</h2>
@@ -395,7 +352,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d5" data-tags="">
+      <div class="robot-tile glass-effect reveal d5" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2019 – 2020</span>
           <h2 class="robot-name">HADES 2.0</h2>
@@ -410,7 +367,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d6" data-tags="">
+      <div class="robot-tile glass-effect reveal d6" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2018 – 2019</span>
           <h2 class="robot-name">HELIOS</h2>
@@ -425,7 +382,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d6" data-tags="">
+      <div class="robot-tile glass-effect reveal d6" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2017 – 2018</span>
           <h2 class="robot-name">N/A</h2>
@@ -440,7 +397,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d7" data-tags="">
+      <div class="robot-tile glass-effect reveal d7" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2016 – 2017</span>
           <h2 class="robot-name">APOLLO</h2>
@@ -455,7 +412,7 @@ main { padding-top: var(--nav-h); }
         </div>
       </div>
 
-      <div class="robot-tile reveal d7" data-tags="">
+      <div class="robot-tile glass-effect reveal d7" data-tags="">
         <div class="robot-text">
           <span class="robot-season-tag">2015 – 2016</span>
           <h2 class="robot-name">HERMES 2.0</h2>

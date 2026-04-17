@@ -6,19 +6,8 @@
   <title>Team – QuadX 6299</title>
   <link rel="icon" type="image/webp" href="GOLD-Logo.webp">
   <script src="shared.js"></script>
+      <link rel="stylesheet" href="style.css">
   <style>
-    @font-face { font-family: 'Proxima Nova'; font-weight: 400; src: url('Proxima-Nova/proximanova_regular.ttf') format('truetype'); }
-    @font-face { font-family: 'Proxima Nova'; font-weight: 700; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
-    @font-face { font-family: 'Proxima Nova'; font-weight: 900; src: url('Proxima-Nova/proximanova_bold.otf') format('opentype'); }
-
-    :root {
-      --font-primary: 'Proxima Nova', Arial, Helvetica, sans-serif;
-      --gold:  #D4AF37;
-      --gold2: #FFD700;
-      --nav-h: 55px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
 
     
 
@@ -171,24 +160,29 @@
 
     /* ── MEMBER CARD BASE ── */
     .member-card {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                  border-color 0.3s ease,
-                  background 0.3s ease;
-      position: relative;
-    }
+  /* 1. Gradient background to simulate light hitting one corner */
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  
+  /* 2. Keep specialized properties not in the base glass class */
+  background-clip: padding-box; 
+}
 
-    .member-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(212,175,55,0.45);
-      background: rgba(255,255,255,0.1);
-    }
+.member-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  
+  /* 4. Gold "Energy" Glow */
+  border-color: rgba(212, 175, 55, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 15px rgba(212, 175, 55, 0.15); /* Soft gold aura */
+}
+
 
     .member-card img {
       display: block;
@@ -224,38 +218,47 @@
 
     /* ── ROLE BADGE ── */
     .role-badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 100px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-    .role-badge.leadership {
-      background: linear-gradient(135deg, rgba(212,175,55,0.25), rgba(255,215,0,0.15));
-      border: 1px solid rgba(212,175,55,0.5);
-      color: var(--gold2);
-    }
+/* Leadership - Amber Glass */
+.role-badge.leadership {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #fff; /* White text pops better on tinted glass */
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
 
-    .role-badge.software {
-      background: rgba(56,189,248,0.12);
-      border: 1px solid rgba(56,189,248,0.3);
-      color: #7dd3fc;
-    }
+/* Software - Sapphire Glass */
+.role-badge.software {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(56, 189, 248, 0.05));
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
 
-    .role-badge.hardware {
-      background: rgba(251,146,60,0.12);
-      border: 1px solid rgba(251,146,60,0.3);
-      color: #fdba74;
-    }
+/* Hardware - Citrine/Orange Glass */
+.role-badge.hardware {
+  background: linear-gradient(135deg, rgba(251, 146, 60, 0.25), rgba(251, 146, 60, 0.05));
+  border: 1px solid rgba(251, 146, 60, 0.4);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(251, 146, 60, 0.5);
+}
 
-    .role-badge.marketing {
-      background: rgba(167,139,250,0.12);
-      border: 1px solid rgba(167,139,250,0.3);
-      color: #c4b5fd;
-    }
+/* Marketing - Amethyst Glass */
+.role-badge.marketing {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(167, 139, 250, 0.05));
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+}
+
 
     /* ── HISTORY SECTION ── */
     .history-container {
@@ -265,25 +268,37 @@
     }
 
     .history-item {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 14px;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.3s ease, background 0.3s ease;
-    }
+  /* 1. Use a gradient for better light simulation */
+  margin-bottom: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+}
 
-    .history-item:hover {
-      border-color: rgba(212,175,55,0.3);
-      background: rgba(255,255,255,0.08);
-    }
+.history-item:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.2);
+}
 
-    .history-item.open {
-      border-color: rgba(212,175,55,0.4);
-      background: rgba(212,175,55,0.05);
-    }
+.history-item.open {
+  /* 4. Amber glass effect when open */
+  border-color: rgba(212, 175, 55, 0.6);
+  background: linear-gradient(
+    135deg, 
+    rgba(212, 175, 55, 0.15) 0%, 
+    rgba(212, 175, 55, 0.05) 100%
+  );
+  
+  /* 5. Inner and outer gold glow */
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 0 15px rgba(212, 175, 55, 0.1),
+    0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
 
     /* ── ACCORDION HEADER ── */
     .year-header {
@@ -319,20 +334,26 @@
 
     /* Worlds badge on header */
     .worlds-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 12px;
-      border-radius: 100px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.22), rgba(255,215,0,0.1));
-      border: 1px solid rgba(212,175,55,0.4);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gold2);
-      flex-shrink: 0;
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 100px;
+  flex-shrink: 0;
+
+  /* 2. Keep the "Gold Etched" Styling */
+  color: #fff !important; 
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+  font-size: 0.68rem;
+  font-weight: 800; 
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  /* 3. Keep ONLY the unique Golden tint */
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.35) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+}
+
 
     .worlds-badge svg {
       width: 11px; height: 11px;
@@ -394,50 +415,49 @@
       margin-bottom: 8px;
     }
 
-    .award-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
     .award-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      border: 1px solid rgba(212,175,55,0.3);
-      background: rgba(212,175,55,0.08);
-      color: rgba(255,255,255,0.85);
-    }
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
 
-    .award-pill .place {
-      color: var(--gold2);
-      font-weight: 900;
-    }
+  /* 2. Keep ONLY the unique "Wet" Highlight */
+  background: radial-gradient(
+    circle at 30% 30%, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(212, 175, 55, 0.1) 100%
+  );
+  
+  /* Keep the specific border opacity if you want it to pop more than standard cards */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
 
-    /* 1st place gets a glow */
-    .award-pill.first {
-      border-color: rgba(212,175,55,0.6);
-      background: rgba(212,175,55,0.14);
-      box-shadow: 0 0 12px rgba(212,175,55,0.15);
-    }
+/* 1st Place - Liquid Gold */
+.award-pill.first {
+  background: radial-gradient(
+    circle at 30% 30%, 
+    rgba(255, 255, 255, 0.25) 0%, 
+    rgba(212, 175, 55, 0.2) 100%
+  );
+  
+  /* 2. Keep the specific Gold border color */
+  border-color: rgba(212, 175, 55, 0.7);
 
-    .award-pill.first .place { color: var(--gold2); }
+  /* 3. Keep ONLY the outer gold glow (remove the inset) */
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+}
 
-    /* ── FOOTER ── */
-    footer { padding: 50px 40px 36px; display: flex; flex-direction: column; align-items: center; gap: 28px; background: rgba(0,0,0,0.55); }
-    .footer-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 4px; justify-content: center; }
-    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .social-links { display: flex; gap: 14px; }
-    .social-link { width: 42px; height: 42px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
-    .social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 0 12px rgba(212,175,55,0.7), 0 0 30px rgba(212,175,55,0.35); }
-    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+.award-pill .place {
+  /* Make the rank look etched into the liquid */
+  color: #D4AF37; 
+  font-weight: 900;
+  text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+}
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1000px) {
@@ -463,8 +483,6 @@
     <!-- ── PAGE HEADER ── -->
     <header class="page-header">
       <h1 class="page-title reveal d1">MEET THE TEAM</h1>
-      <p class="page-subtitle reveal d2">A 12 person team of highschoolers consisting of members who do hardware, software, and marketing</p>
-
     </header>
 
     <!-- ── LEADERSHIP ── -->
@@ -474,32 +492,6 @@
     </div>
 
     <div class="leadership-grid">
-      <div class="member-card reveal d1">
-        <div style="height: 270px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.4);">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px; opacity: 0.6;">
-            <path d="M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z" />
-          </svg>
-          <span style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700;">no image currently</span>
-        </div>
-        <div class="member-info">
-          <h3>Tony Ortega</h3>
-          <span class="role-badge leadership">Co-PM · Hardware Lead</span>
-        </div>
-      </div>
-      <div class="member-card reveal d2">
-        <img src="Headshots/Amal.webp" alt="Amal Madapaty" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Amal Madapaty</h3>
-          <span class="role-badge leadership">Co-PM · Software Lead</span>
-        </div>
-      </div>
-      <div class="member-card reveal d3">
-        <img src="Headshots/Aarya.webp" alt="Aarya Bhise" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Aarya Bhise</h3>
-          <span class="role-badge leadership">APM · Marketing Lead</span>
-        </div>
-      </div>
     </div>
 
     <hr class="gold-divider reveal">
@@ -511,69 +503,7 @@
     </div>
 
     <div class="member-grid">
-      <div class="member-card reveal d1">
-        <img src="Headshots/Aiden.webp" alt="Aiden Giroux" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Aiden Giroux</h3>
-          <span class="role-badge software">Software</span>
-        </div>
-      </div>
-      <div class="member-card reveal d2">
-        <img src="Headshots/Alex.webp" alt="Alex Ritter" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Alex Ritter</h3>
-          <span class="role-badge software">Software</span>
-        </div>
-      </div>
-      <div class="member-card reveal d3">
-        <img src="Headshots/Sarthak.webp" alt="Sarthak Kamble" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Sarthak Kamble</h3>
-          <span class="role-badge software">Software</span>
-        </div>
-      </div>
-      <div class="member-card reveal d4">
-        <img src="Headshots/Baran.webp" alt="Baran Shafaei" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Baran Shafaei</h3>
-          <span class="role-badge marketing">Marketing</span>
-        </div>
-      </div>
-      <div class="member-card reveal d5">
-        <img src="Headshots/Andrea.webp" alt="Andrea Joseph" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Andrea Joseph</h3>
-          <span class="role-badge marketing">Marketing</span>
-        </div>
-      </div>
-      <div class="member-card reveal d6">
-        <img src="Headshots/Eeshu.webp" alt="Eeshu Pachigolla" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Eeshu Pachigolla</h3>
-          <span class="role-badge hardware">Hardware</span>
-        </div>
-      </div>
-      <div class="member-card reveal d7">
-        <img src="Headshots/Seyeon.webp" alt="Seyeon Kwon" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Seyeon Kwon</h3>
-          <span class="role-badge hardware">Hardware</span>
-        </div>
-      </div>
-      <div class="member-card reveal d8">
-        <img src="Headshots/Akash.webp" alt="Akash Katta" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Akash Katta</h3>
-          <span class="role-badge hardware">Hardware</span>
-        </div>
-      </div>
-      <div class="member-card reveal d1">
-        <img src="Headshots/Saachi.webp" alt="Saachi Arya" onerror="this.style.opacity='0'">
-        <div class="member-info">
-          <h3>Saachi Arya</h3>
-          <span class="role-badge hardware">Hardware</span>
-        </div>
-      </div>
+      
     </div>
 
     <hr class="gold-divider reveal">
@@ -586,425 +516,17 @@
 
     <div class="history-container">
 
-      <!-- 2025-2026 -->
-      <div class="history-item reveal d1">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2025 – 2026</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">This season was full of ambition and progress. With 6 rookies on the team, we primarily focused on curricula and our own QuadX Leadership Camp to promote learning. We built 2 fully functional robots capable of scoring from the far side with a consistent auto. We attended 7 company tours/visits including Tesla and Amazon, hosted STEM nights and Impulse camp, created team Viperia 32196, and fundraised $5,500 — with $1,300 going toward creating 2 teams in Rwanda in partnership with Stryke 6210.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC SWAT League Championships</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">3rd</span> Inspire Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="history-container"></div>
 
-      <!-- 2024-2025 -->
-      <div class="history-item reveal d2">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2024 – 2025</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">Our 2024–2025 season had us taking on four new rookies. We focused on bringing them up to speed. While our robot game was not on par with the previous year, our outreach was great — including tours of Samsung and Dell facilities, large community events, and professional virtual meetings.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC Central WALL-E Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">2nd</span> Connect Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2023-2024 -->
-      <div class="history-item reveal d3">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2023 – 2024</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">For our 2023–2024 season, we only had two rookies on our team, with the remainder being veterans. Despite not advancing past regionals, we hosted events such as our coding basics camp CodeX and learned from several industry professionals.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC Central WALL-E Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">3rd</span> Inspire Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Central Area Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">3rd</span> Design Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2022-2023 -->
-      <div class="history-item reveal d4">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2022 – 2023</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">The beginning of the season was rough due to little consideration for software in our design process. Thankfully, our team had much experience in judging, which helped us make it to Worlds and become a design award finalist. We also hosted a STEM event known as Momentum.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC Texas Central GEMS League Championships</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">3rd</span> Inspire Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Texas Central Regional Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">2nd</span> Connect Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Texas State Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">2nd</span> Inspire Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC World Championship – Franklin Division</div>
-                <div class="award-pills">
-                  <span class="award-pill"><span class="place">3rd</span> Design Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2021-2022 -->
-      <div class="history-item reveal d5">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2021 – 2022</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">With an almost entirely rookie team and the pandemic's aftermath, the 2021 season was difficult. Our end-of-year Momentum Career Showcase was held virtually, making STEM expertise accessible to more people. We continued building relationships with industry professionals and made big strides to increase commitment to robotics.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC Texas Central Austin Metro League Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Design Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Texas Central Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Connect Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2020-2021 -->
-      <div class="history-item reveal d6">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2020 – 2021</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">With an almost entirely rookie team and an emerging pandemic, the 2020 season was extremely difficult. Yet we persevered. The Argentinian camp we hosted was entirely in Spanish, making STEM resources more accessible. We continued our relationship with South Africa and further helped the Greater Tzaneen Community FTC teams.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC League Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Inspire Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Texas State Cup</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Motivate Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Alamo Regional Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Motivate Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2019-2020 -->
-      <div class="history-item reveal d7">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2019 – 2020</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">A team of all veteran members, QuadX had a strong base for 2019–2020. We took on our biggest endeavor yet and travelled to Tzaneen, South Africa to set up 2 FTC teams. Our season was ultimately cut short due to COVID-19.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC League Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill">Division Finalist</span>
-                  <span class="award-pill first"><span class="place">1st</span> Inspire Award</span>
-                  <span class="award-pill"><span class="place">2nd</span> Connect Award</span>
-                  <span class="award-pill"><span class="place">2nd</span> Innovate Award</span>
-                  <span class="award-pill"><span class="place">2nd</span> Motivate Award</span>
-                  <span class="award-pill"><span class="place">2nd</span> Control Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Alamo Regional Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Inspire Award</span>
-                  <span class="award-pill"><span class="place">2nd</span> Think Award</span>
-                  <span class="award-pill"><span class="place">3rd</span> Connect Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC World Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill" style="border-color:rgba(239,68,68,0.4);color:rgba(252,165,165,0.9);">Cancelled – COVID-19</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2018-2019 -->
-      <div class="history-item reveal d8">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2018 – 2019</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">With only one team member graduating from the year prior, QuadX had a strong base. We used our relationships to design a competitive robot, culminating at the World Championships in Houston where we brought home the Inspire Finalist Award.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC League Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill">Winning Alliance 1st Pick</span>
-                  <span class="award-pill"><span class="place">2nd</span> Inspire Award</span>
-                  <span class="award-pill first"><span class="place">1st</span> Motivate Award</span>
-                  <span class="award-pill"><span class="place">3rd</span> Innovate Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Alamo Regional Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill">Winning Alliance 1st Pick</span>
-                  <span class="award-pill"><span class="place">3rd</span> Inspire Award</span>
-                  <span class="award-pill first"><span class="place">1st</span> Design Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC World Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first">Inspire Finalist Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2017-2018 -->
-      <div class="history-item reveal d1">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2017 – 2018</span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">Starting the season with more rookies than veterans, we had a lot of learning to do. Though there were many bumps in the road, we continued in off-season AML and were Winning Alliance First Pick at the AML "World Championships."</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC AML Offseason Event #5</div>
-                <div class="award-pills">
-                  <span class="award-pill">Winning Alliance 1st Pick</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Alamo Regional Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill">Finalist Alliance 1st Pick</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2016-2017 -->
-      <div class="history-item reveal d2">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2016 – 2017</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">Using what we'd learned from previous years, we created our masterpiece "Apollo." We returned to the World Championships in Houston and won the Design Award for the third year in a row.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC League Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Inspire Award</span>
-                  <span class="award-pill">Winning Alliance Captain</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC Alamo Regional Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first"><span class="place">1st</span> Inspire Award</span>
-                </div>
-              </div>
-              <div class="awards-event" style="margin-top:10px">
-                <div class="event-name">FTC World Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first">PTC Design Award</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2015-2016 -->
-      <div class="history-item reveal d3">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2015 – 2016</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">After having the same team for two years, our structure changed drastically with 6 new rookies. We didn't let these changes stop us from making it back to the World Championships and winning the Design Award for the second year in a row.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC World Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first">PTC Design Award</span>
-                  <span class="award-pill">Division Finalist Alliance 1st Pick</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2014-2015 -->
-      <div class="history-item reveal d4">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2014 – 2015</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">For our second year together, we built another fast and maneuverable robot, "X." We made it back to the World Championship and became the first team from Texas to receive an award — the Design Award!</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC World Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first">PTC Design Award</span>
-                  <span class="award-pill">Finalist Alliance 1st Pick</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2013-2014 -->
-      <div class="history-item reveal d5">
-        <div class="year-header" onclick="toggleAccordion(this.parentElement)">
-          <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          <span class="year-text">2013 – 2014</span>
-          <span class="worlds-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            Worlds
-          </span>
-        </div>
-        <div class="accordion-body">
-          <div class="accordion-inner">
-            <p class="season-desc">Essentially our rookie year — everyone was new and nobody had ever been on the Hardware team. Through hard work, creativity, and sheer will, we made it to the World Championship and reached the finals.</p>
-            <div class="awards-section">
-              <div class="awards-heading">Awards Won</div>
-              <div class="awards-event">
-                <div class="event-name">FTC World Championship</div>
-                <div class="award-pills">
-                  <span class="award-pill first">Finalist Alliance 1st Pick</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /history-container -->
+    </div>
   </main>
 
   <div class="section-divider"></div>
 
   <div id="footer-mount"></div>
+
+<script src="teamhistory.js"></script>
+<script src="team.js"></script>
 
   <script>
     function initializeComponents() {
@@ -1026,6 +548,35 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function toggleAccordion(item) {
+      const body = item.querySelector('.accordion-body');
+      const inner = item.querySelector('.accordion-inner');
+      const isOpen = item.classList.contains('open');
+
+      // Close all others
+      document.querySelectorAll('.history-item.open').forEach(openItem => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.accordion-body').style.maxHeight = '0';
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('open');
+        body.style.maxHeight = '0';
+      } else {
+        item.classList.add('open');
+        body.style.maxHeight = inner.scrollHeight + 'px';
+      }
+    }
+
+    // ── Scroll reveal
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+    
   </script>
 </body>
 </html>

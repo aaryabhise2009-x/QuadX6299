@@ -28,11 +28,11 @@ function createMemberCard(member, index) {
           </div>`;
 
     return `
-      <div class="member-card reveal d${(index % 8) + 1}">
+      <div class="member-card glass-effect reveal d${(index % 8) + 1}">
         ${visual}
         <div class="member-info">
           <h3>${member.name}</h3>
-          <span class="role-badge ${member.type}">${member.role}</span>
+          <span class="role-badge glass-effect ${member.type}">${member.role}</span>
         </div>
       </div>`;
 }

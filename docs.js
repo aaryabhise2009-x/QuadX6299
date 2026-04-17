@@ -27,8 +27,8 @@ function initDocumentCards() {
   if (!container) return;
 
   const cardsHTML = documentData.map(doc => `
-    <a class="doc-card reveal ${doc.delay}" href="${doc.href}" target="_blank" rel="noopener">
-      <div class="doc-icon">
+    <a class="doc-card glass-effect reveal ${doc.delay}" href="${doc.href}" target="_blank" rel="noopener">
+      <div class="doc-icon glass-effect">
         <svg viewBox="0 0 24 24">${doc.icon}</svg>
       </div>
       <div class="doc-info">
@@ -36,7 +36,7 @@ function initDocumentCards() {
         <p class="doc-desc">${doc.desc}</p>
       </div>
       <div class="doc-footer">
-        <span class="doc-format">PDF</span>
+        <span class="doc-format glass-effect">PDF</span>
         <span class="doc-arrow">
           Open
           <svg viewBox="0 0 24 24">
