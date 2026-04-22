@@ -7,7 +7,15 @@ function renderOutreachContent() {
   if (!mount) return;
 
   mount.innerHTML = `
-    <div class="glass-card reveal">
+
+ <hr class="gold-divider reveal">
+
+    <div class="sub-section-header reveal">
+      <h2>Key Initiatives</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout">
         <div class="card-content">
           <h3>International Outreach</h3>
@@ -28,7 +36,7 @@ function renderOutreachContent() {
       </div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
   <div class="card-layout rev">
     <div class="card-content">
       <h3>Team Creation</h3>
@@ -53,7 +61,7 @@ function renderOutreachContent() {
       <div class="rule"></div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout">
         <div class="card-content">
           <h3>Community Impact</h3>
@@ -74,7 +82,7 @@ function renderOutreachContent() {
       </div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout rev">
         <div class="card-content">
           <h3>Community Event</h3>
@@ -94,7 +102,7 @@ function renderOutreachContent() {
       </div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout">
         <div class="card-content">
           <h3>Public Outreach</h3>
@@ -113,7 +121,7 @@ function renderOutreachContent() {
       </div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout rev">
         <div class="card-content">
           <h3>Team Growth</h3>
@@ -140,7 +148,7 @@ function renderOutreachContent() {
       <div class="rule"></div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout">
         <div class="card-content">
           <h3>Technical Expertise</h3>
@@ -165,7 +173,7 @@ function renderOutreachContent() {
       </div>
     </div>
 
-    <div class="glass-card reveal">
+    <div class="glass-card glass-effect reveal">
       <div class="card-layout rev">
         <div class="card-content">
           <h3>Field Experience</h3>

@@ -11,23 +11,6 @@
   <style>
 
 
-    html, body {
-      margin: 0; padding: 0;
-      overflow-x: hidden;
-      min-height: 100vh;
-      font-family: var(--font-primary);
-      color: #fff;
-      background-color: #111;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-image: url("website-background.webp");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
 
     /* ── SCROLL REVEAL ── */
     @keyframes fadeSlideUp {
@@ -175,17 +158,6 @@
 
     /* ── GLASS CARDS ── */
     .glass-card {
-  /* 1. Reduce saturation and blur to stop the orange "bleeding" */
-  backdrop-filter: blur(12px) saturate(110%);
-  -webkit-backdrop-filter: blur(12px) saturate(110%);
-
-  /* 2. Use a cooler, more opaque base to "block" the background color */
-  background: rgba(255, 255, 255, 0.05); 
-  
-  /* 3. Keep the premium borders but soften the top highlight */
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  
   border-radius: 24px;
   padding: 40px;
   width: 100%;
@@ -193,13 +165,6 @@
   margin-bottom: 22px;
   position: relative;
   overflow: hidden;
-
-  /* 4. Deep shadow to separate the card from the dark background */
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-              background 0.4s ease, 
-              box-shadow 0.4s ease;
 }
 
 .glass-card:hover {
@@ -467,21 +432,7 @@
       </div>
     </div>
 
-    <!-- ── KEY INITIATIVES ── -->
-    <div class="sub-section-header reveal">
-      <h2>Key Initiatives</h2>
-      <div class="rule"></div>
-    </div>
-
     
-
-    <hr class="gold-divider reveal">
-
-    <!-- ── COMMUNITY OUTREACH ── -->
-    <div class="sub-section-header reveal">
-      <h2>Community Outreach</h2>
-      <div class="rule"></div>
-    </div>
 
     <div id="outreach-content-mount"></div>
 

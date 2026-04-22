@@ -9,20 +9,9 @@
       <link rel="stylesheet" href="style.css">
   <style>
 
-    body {
-      margin: 0;
-      overflow-x: hidden;
-      min-height: 100vh;
-      font-family: var(--font-primary);
-      color: #fff;
-      background: #111 url(website-background.webp) no-repeat center center fixed;
-      background-size: cover;
-    }
-
     /* Restores your global link color without the extra style tag in the body */
     a { color: white; text-decoration: none; }
 
-    main { padding-top: var(--nav-h); }
 
     /* --- CLEANED DOCUMENTS CSS --- */
 
@@ -296,6 +285,8 @@
   white-space: nowrap;
   background: radial-gradient(circle at 30% 0%, rgba(255, 215, 0, 0.3) 0%, rgba(212, 175, 55, 0.1) 100%);
   border-color: rgba(212, 175, 55, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.45); 
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .nudge-btn:hover {

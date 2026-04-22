@@ -56,28 +56,87 @@ function renderNav(activePage) {
     const style = document.createElement('style');
     style.id = 'shared-nav-styles';
     style.textContent = `
-      #shared-nav {
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        height: 55px;
-        background: rgba(0, 0, 0, 0.78);
-        backdrop-filter: blur(22px) saturate(160%);
-        -webkit-backdrop-filter: blur(22px) saturate(160%);
-        border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 30px; z-index: 9999; box-sizing: border-box;
-      }
-      .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-      .nav-icon { height: 28px; width: auto; }
-      .nav-logo span { color: #fff; font-family: 'Proxima Nova', sans-serif; font-weight: 700; font-size: 1.1rem; }
-      .nav-links { display: flex; align-items: center; gap: 2px; }
-      .nav-link {
-        color: rgba(255, 255, 255, 0.6); font-family: 'Proxima Nova', sans-serif;
-        font-weight: 700; font-size: 0.85rem; padding: 6px 12px;
-        text-decoration: none; border-bottom: 2px solid transparent; transition: color 0.2s;
-      }
-      .nav-link:hover, .nav-link.active-tab { color: #FFD700; }
-      .nav-link.active-tab { border-bottom: 2px solid #D4AF37; }
+      /* Container */
+#shared-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 9999;
+  box-sizing: border-box;
+}
+
+/* Logo Section */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-icon {
+  height: 28px;
+  width: auto;
+}
+
+.nav-logo span {
+  color: #fff;
+  font-family: 'Proxima Nova', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Slightly more space for the pill shapes */
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Proxima Nova", sans-serif;
+  font-weight: 600; /* Slightly lighter weight feels more premium */
+  font-size: 0.85rem;
+  padding: 7px 18px;
+  text-decoration: none;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother "liquid" motion */
+}
+
+/* Hover State */
+.nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Active Bubble State */
+.nav-link.active-tab {
+  color: #FFD700;
+  /* Multi-layered background for depth */
+  background: linear-gradient(45deg, #ffd74812 1%, #ecb20410 1%, #ffd74811 1%); 
+  
+  /* Specular highlight (top edge) and subtle inner glow */
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.5), 
+    0 2.5px 7px rgba(212, 175, 55, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+    
+  /* Removing the harsh outline for a softer, integrated glass feel */
+  border: none;
+  position: relative;
+}
+
 
       .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 10001; }
       .nav-hamburger span { display: block; width: 24px; height: 2px; background: rgba(255, 255, 255, 0.75); transition: 0.3s; }

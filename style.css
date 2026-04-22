@@ -30,30 +30,45 @@
 
     *, *::before, *::after { box-sizing: border-box; }
 
+    html, body {
+      margin: 0; padding: 0;
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-family: var(--font-primary);
+      color: #fff;
+      background-color: #111;
+    }
+
+    body {
+      background-image: url(website-background.webp);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    main { padding-top: var(--nav-h);       align-items: center; align-items: center;
+      justify-content: center;      display: flex;}
+
 .glass-effect {
-  /* 1. Ultra-Low Opacity (Removes the 'frosted' haze) */
-  background: rgba(255, 255, 255, 0.015); 
-  
-  /* 2. High Refraction (Apple VisionOS Style) */
-  /* Higher saturation (210%) makes the colors behind the glass pop */
-  backdrop-filter: blur(40px) saturate(210%) brightness(110%);
-  -webkit-backdrop-filter: blur(40px) saturate(210%) brightness(110%);
-  
-  /* 3. Sharp Specular Edges (Defines the shape without opacity) */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-top: 1px solid rgba(255, 255, 255, 0.45); 
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-  
-  /* 4. Deep Refraction Shadows */
-  box-shadow: 
-    0 15px 35px 0 rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4), /* Sharp top 'hit' of light */
-    inset 0 0 20px rgba(255, 255, 255, 0.02); 
-    
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  
-  /* Performance fixes */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
+   /* 1. Ultra-Low Opacity (Removes the 'frosted' haze) */ 
+   background: rgba(255, 255, 255, 0); 
+   /* 2. High Refraction (Apple VisionOS Style) */ 
+   /* Higher saturation (210%) makes the colors behind the glass pop */ 
+   backdrop-filter: blur(10px) saturate(190%) brightness(110%); 
+   -webkit-backdrop-filter: blur(1px) saturate(190%) brightness(110%); 
+   /* 3. Sharp Specular Edges (Defines the shape without opacity) */ 
+   border: 1px solid rgba(255, 255, 255, 0.15); 
+   border-top: 1px solid rgba(255, 255, 255, 0.45); 
+   border-left: 1px solid rgba(255, 255, 255, 0.25); 
+   /* 4. Deep Refraction Shadows */ 
+   box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.3), 
+   inset 0 1px 1px rgba(255, 255, 255, 0.4), 
+   /* Sharp top 'hit' of light */ 
+   inset 0 0 20px rgba(255, 255, 255, 0.02); 
+   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+   /* Performance fixes */ 
+   -webkit-transform: translateZ(0); 
+   transform: translateZ(0); 
+   backface-visibility: hidden; 
+  }
